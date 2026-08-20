@@ -1,0 +1,45 @@
+#misReportTable th,
+#misReportTable td {
+  border: 1px solid #dee2e6;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+#misReportTable thead th {
+  position: sticky;
+  top: 0;
+  background-color: #212529;
+  color: #fff;
+  border-bottom: 3px solid #0d6efd;
+  z-index: 2;
+  text-transform: uppercase;
+}
+
+#misReportTable tbody tr:hover {
+  background-color: #f1f3f5;
+}
+
+#misReportTable tbody tr.section-header td {
+  background-color: #0d6efd;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.container.mt-4 {
+  transform: scale(0.75);
+  transform-origin: top left;
+  width: 133.33%; 
+}

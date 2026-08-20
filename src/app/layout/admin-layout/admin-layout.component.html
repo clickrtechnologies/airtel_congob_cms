@@ -1,0 +1,138 @@
+<div class="d-flex flex-column min-vh-100">
+  <app-header></app-header>
+
+  <div class="d-flex flex-grow-1 overflow-hidden">
+    <!-- Sidebar -->
+        <nav class="sidebar d-none d-md-flex flex-column p-3 bg-dark text-white"
+     *ngIf="!isSidebarHidden">
+          <ul class="nav nav-pills flex-column"> 
+        <div class="text-end mb-3">
+  <button class="btn btn-sm btn-outline-light"
+          (click)="toggleSidebar()">
+    <i class="bi bi-x-lg"></i>
+  </button>
+</div>
+
+        <li class="nav-item">
+          <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-link d-flex align-items-center">
+            <i class="bi bi-speedometer2 me-2"></i> {{ 'Dashboard' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin/bulk-download" routerLinkActive="active" class="nav-link d-flex align-items-center">
+            <i class="bi bi-speedometer2 me-2"></i> {{ 'Bulk Download' | translate }}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/admin/inbox" routerLinkActive="active" class="nav-link d-flex align-items-center">
+            <i class="bi bi-envelope-fill me-2"></i> {{ 'Inbox' | translate }}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/admin/admin-approval" routerLinkActive="active" class="nav-link d-flex align-items-center">
+            <i class="bi bi-check2-square me-2"></i> {{ 'Admin Approval' | translate }}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/admin/name-rbt" routerLinkActive="active" class="nav-link d-flex align-items-center">
+            <i class="bi bi-music-note me-2"></i> {{ 'Name RBT' | translate }}
+          </a>
+        </li>
+
+        <li class="nav-item has-submenu">
+          <a class="nav-link d-flex align-items-center submenu-toggle" (click)="toggleSubmenu($event)">
+            <i class="bi bi-person-gear me-2"></i> {{ 'Admin' | translate }}
+            <i class="bi bi-caret-down ms-auto"></i>
+          </a>
+
+          <ul class="submenu nav flex-column ps-3">
+            <li>
+              <a class="nav-link" routerLink="/admin/cp-management">
+                <i class="bi bi-box-arrow-in-right me-2"></i> {{ 'CP Login' | translate }}
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/admin/artist-management">
+                <i class="bi bi-person-circle me-2"></i> {{ 'Artist Login' | translate }}
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/admin/mno-management">
+                <i class="bi bi-diagram-3 me-2"></i> {{ 'MNO Login' | translate }}
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/admin/user-management">
+                <i class="bi bi-shield-lock me-2"></i> {{ 'User Login' | translate }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/admin/cp-reports" routerLinkActive="active" class="nav-link d-flex align-items-center">
+            <i class="bi bi-bar-chart-line me-2"></i> {{ 'CP Reports' | translate }}
+          </a>
+        </li>
+
+         <li class="nav-item">
+          <a routerLink="/admin/thumbnail-upload" routerLinkActive="active" class="nav-link d-flex align-items-center">
+            <i class="bi bi-pie-chart me-2"></i> {{ 'Thumbnail Zip' | translate }}
+          </a>
+        </li>
+
+        <!-- <li class="nav-item">
+          <a routerLink="/admin/artist-reports" routerLinkActive="active" class="nav-link d-flex align-items-center">
+            <i class="bi bi-pie-chart me-2"></i> {{ 'Artist Reports' | translate }}
+          </a>
+        </li> -->
+
+        <li class="nav-item has-submenu">
+          <a class="nav-link d-flex align-items-center submenu-toggle" (click)="toggleSubmenu($event)">
+            <i class="bi bi-bar-chart-line me-2"></i> {{ 'MIS Reports' | translate }}
+            <i class="bi bi-caret-down ms-auto"></i>
+          </a>
+
+          <ul class="submenu nav flex-column ps-3">
+            <li>
+              <a class="nav-link" routerLink="/admin/internal-mis-reports">
+                <i class="bi bi-box-arrow-in-right me-2"></i> {{ 'Internal MIS Reports' | translate }}
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/content-download-daily-report">
+                <i class="bi bi-box-arrow-in-right me-2"></i> {{ 'Content download daily report' | translate }}
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/content-download-monthly-report">
+                <i class="bi bi-box-arrow-in-right me-2"></i> {{ 'Content download Monthly report' | translate }}
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/admin/mis-reports">
+                <i class="bi bi-bar-chart-line me-2"></i> {{ 'Statics' | translate }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+
+    <button *ngIf="isSidebarHidden"
+        class="sidebar-show-btn"
+        (click)="toggleSidebar()">
+  <i class="bi bi-list"></i>
+</button>
+    <!-- Main content -->
+    <main class="main-content flex-grow-1">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <app-footer></app-footer>
+</div>

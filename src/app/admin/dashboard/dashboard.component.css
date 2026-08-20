@@ -1,0 +1,367 @@
+.admin-dashboard {
+  background-color: #f3f6f9;
+  min-height: 100vh;
+}
+
+.card {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.table thead th {
+  background-color: #111827 !important;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-bottom: 2px solid #0d6efd;
+}
+
+.table tbody td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px;
+  min-width:150px;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e9f2ff;
+  transition: background-color 0.2s;
+}
+
+.qr-thumbnail {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.qr-thumbnail:hover {
+  transform: scale(1.15);
+}
+
+.btn-audio-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  color: #fff;
+  font-size: 1.3rem;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-audio-circle:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #6610f2, #0d6efd);
+}
+
+.bi-check-circle-fill {
+  color: #28a745;
+  font-size: 1.4rem;
+}
+
+.bi-x-circle-fill {
+  color: #dc3545;
+  font-size: 1.4rem;
+}
+
+.bi-hourglass-split {
+  color: #ffc107;
+  font-size: 1.4rem;
+}
+
+.btn-outline-primary {
+  border-radius: 20px;
+  font-size: 0.85rem;
+  padding: 3px 10px;
+  transition: 0.2s;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+}
+
+/* Modal Background Blur */
+.preview-modal {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 18px !important;
+  padding: 20px;
+  border: none;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* Section Title */
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  border-left: 4px solid #0d6efd;
+  padding-left: 10px;
+}
+
+/* Divider */
+.divider {
+  border-top: 1px solid #e5e7eb;
+  opacity: 0.5;
+}
+
+/* Document Button */
+.doc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #374151;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.doc-btn.primary {
+  background: #e8f0ff;
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+
+.doc-btn:hover {
+  background: #eef1f5;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+.doc-list a {
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #e9ecef; 
+  border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #007bff;
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #0056b3; 
+}
+
+.table-responsive {
+  scrollbar-color: #007bff #e9ecef;
+  scrollbar-width: thin;
+}
+
+.slider-pagination-container {
+  border: 2px solid #e5e7eb;
+  background: linear-gradient(135deg, #f8fafc, #ffffff);
+}
+
+.slider-label {
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.slider-label .badge {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border-radius: 20px;
+}
+
+.scroll-slider-container {
+  border: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, #f8fafc, #ffffff);
+}
+
+.scroll-slider-container .d-flex {
+  align-items: center;
+}
+
+.scroll-slider-container label {
+  min-width: 80px;
+}
+
+.scroll-slider-container .slider-input {
+  margin: 0 10px;
+}
+
+.slider-input {
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #e5e7eb, #d1d5db);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.4);
+  transition: all 0.2s ease;
+}
+
+.slider-input::-webkit-slider-thumb:hover {
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.6);
+  transform: scale(1.1);
+}
+
+.slider-input::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.4);
+  transition: all 0.2s ease;
+}
+
+.slider-input::-moz-range-thumb:hover {
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.6);
+  transform: scale(1.1);
+}
+
+.slider-input::-moz-range-track {
+  background: transparent;
+  border: none;
+}
+
+.slider-info {
+  min-width: 130px;
+  text-align: right;
+}
+
+
+.table-responsive::-webkit-scrollbar {
+  height: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #f3e5f5;
+  border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #6c757d;
+  border-radius: 10px;
+  border: 2px solid #f3e5f5;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #6c757d;
+}
+
+.table-responsive {
+  scrollbar-color: #6c757d #f3e5f5;
+  scrollbar-width: thin;
+}
+
+.dashboard-stats-row {
+  display: flex;
+  gap: 14px;
+}
+
+.stat-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #f8f9fa;
+  border: 1px solid #eee;
+}
+
+.stat-box i {
+  font-size: 16px;
+}
+
+
+.stat-box span {
+  color: #666;
+}
+
+
+.stat-box strong {
+  margin-left: 4px;
+  font-size: 16px;
+}
+
+.stat-box.uploaded {
+  color: #2563eb;
+}
+
+.stat-box.approved {
+  color: #16a34a;
+}
+.admin-dashboard {
+  transform: scale(0.75);
+  transform-origin: top left;
+  width: 133.33%; 
+}
+.scrollable-table {
+  max-height: 650px;
+  overflow-y: auto;
+  overflow-x: auto;
+  display: block;
+}
+
+/* Sticky header */
+.scrollable-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #212529;
+  color: white;
+  z-index: 5;
+}
+
+/* Optional: keep table width wide for scroll */
+.scrollable-table table {
+  min-width: 1200px;
+}

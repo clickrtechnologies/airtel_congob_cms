@@ -1,0 +1,106 @@
+/* Wrapper */
+.admin-dashboard {
+  background-color: #f3f6f9;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+
+/* Card */
+.bulk-container.card {
+  max-width: 600px;
+  margin: auto;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.bulk-container.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Header */
+.card-header {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+/* Divider */
+.divider {
+  border-top: 1px solid #e5e7eb;
+  opacity: 0.6;
+}
+
+/* Audio Circle Button (Reuse from Admin Theme) */
+.btn-audio-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  color: #fff;
+  font-size: 1.3rem;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-audio-circle:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #6610f2, #0d6efd);
+}
+
+/* Download Buttons */
+.doc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f8f9fa;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #374151;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.doc-btn.primary {
+  background: #e8f0ff;
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+
+.doc-btn:hover {
+  background: #eef1f5;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Alerts */
+.alert {
+  font-size: 14px;
+}
+
+
+.admin-dashboard {
+  transform: scale(0.75);
+  transform-origin: top left;
+  width: 133.33%; 
+}
+.download-btn {
+  padding: 12px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.download-btn i {
+  font-size: 18px;
+}

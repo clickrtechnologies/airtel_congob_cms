@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <h4>My Profile</h4>
+  <form *ngIf="user">
+    <div class="mb-3">
+      <label>Name</label>
+      <input class="form-control" [(ngModel)]="user.name" [readonly]="!editMode" name="name" />
+    </div>
+    <div class="mb-3">
+      <label>Email</label>
+      <input class="form-control" [(ngModel)]="user.email" [readonly]="!editMode" name="email" />
+    </div>
+    <div class="mb-3">
+      <label>Username</label>
+      <input class="form-control" [(ngModel)]="user.username" [readonly]="!editMode" name="username" />
+    </div>
+    <div class="mb-3">
+      <label>Password</label>
+      <input class="form-control" [(ngModel)]="user.password" [readonly]="!editMode" type="password" name="password" />
+    </div>
+
+    <button *ngIf="!editMode" class="btn btn-primary" (click)="editMode = true">Edit</button>
+    <button *ngIf="editMode" class="btn btn-success" (click)="saveChanges()">Save</button>
+  </form>
+</div>

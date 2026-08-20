@@ -1,0 +1,42 @@
+<div class="admin-dashboard">
+  <div class="upload-container card">
+
+    <div class="card-header">
+      <h4>Upload Thumbnail ZIP</h4>
+    </div>
+
+    <div class="card-body">
+
+      <label class="drop-box">
+        <input type="file" accept=".zip" (change)="onFileSelected($event)" />
+
+        <div class="upload-icon">
+          <i class="bi bi-cloud-arrow-up"></i>
+        </div>
+
+        <div class="upload-title">Choose ZIP File</div>
+        <div class="upload-subtitle">Click to browse</div>
+
+        <div class="file-preview" *ngIf="selectedFile">
+          {{ selectedFile.name }}
+        </div>
+      </label>
+
+      <button
+        class="upload-btn"
+        [disabled]="!selectedFile || isUploading"
+        (click)="uploadZip()">
+        {{ isUploading ? 'Uploading...' : 'Upload ZIP' }}
+      </button>
+
+      <div class="message success" *ngIf="successMessage">
+        {{ successMessage }}
+      </div>
+
+      <div class="message error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "cms_report": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/cms_report",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "tsconfig.app.json",
+            "assets": ["src/favicon.ico", "src/assets", "src/firebase-messaging-sw.js"],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "20kb",
+                  "maximumError": "20kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "cms_report:build:production",
+              "port": 4201
+            },
+            "development": {
+              "browserTarget": "cms_report:build:development",
+              "port": 4201
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "cms_report:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": ["src/favicon.ico", "src/assets", "src/firebase-messaging-sw.js"],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css",
+              "https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css",
+              "https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css"
+            ],
+
+            "scripts": [
+              "https://code.jquery.com/jquery-3.6.0.min.js",
+              "https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js",
+              "https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js",
+              "https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js",
+              "https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js",
+              "https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js",
+              "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "16c6666e-98ac-4790-8a84-d9e6350d7de4"
+  }
+}

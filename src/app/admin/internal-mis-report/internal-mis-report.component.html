@@ -1,0 +1,157 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table id="misReportTable" class="table table-hover align-middle mb-0 text-center">
+          <thead class="table-dark">
+            <tr>
+              <th style="width: 60%;">{{ 'Metric' | translate }}</th>
+              <th style="width: 40%;">{{ 'Value' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- CRBT - Call Details -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'CRBT - Call Details' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Total calls to IVR' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Total Unique calls' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Total subscriber calls' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Total MOU' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Active User MOU' | translate }}</td><td></td></tr>
+
+            <!-- New RBT Subscriptions -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'New RBT Subscriptions - Counts' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Daily Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Weekly Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Monthly Tariff Plan @' | translate }}</td><td></td></tr>
+
+            <!-- New Sub RBT Retry -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'New Sub RBT Retry - Counts' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Daily Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Weekly Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Monthly Tariff Plan @' | translate }}</td><td></td></tr>
+
+            <!-- New Content Download Subscriptions -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'New Content Download Subscriptions - Counts' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Daily Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Weekly Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Monthly Tariff Plan @' | translate }}</td><td></td></tr>
+
+            <!-- New Content Download Sub Retries -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'New Content Download Sub Retries - Counts' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Daily Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Weekly Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Monthly Tariff Plan @' | translate }}</td><td></td></tr>
+
+            <!-- Mode of Subscription -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'Mode of Subscription - Counts' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'IVR' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Copy' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'SMS' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'USSD' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'QR Code' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'APP' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'CCI' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'WAP' | translate }}</td><td></td></tr>
+
+            <!-- RBT Subscription Renewals -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'RBT Subscription Renewals - Counts' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Daily Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Weekly Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Monthly Tariff Plan @' | translate }}</td><td></td></tr>
+
+            <!-- RBT Content Download Renewals -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'RBT Content Download Renewals - Counts' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Daily Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Weekly Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Monthly Tariff Plan @' | translate }}</td><td></td></tr>
+
+            <!-- Type of RBTs - Activation Counts -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'Type of RBTs - Activation Counts' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'NAME RBT' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'CORPORATE RBT' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'PROMOTIONAL RBT' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'PROFESSIONAL RBT' | translate }}</td><td></td></tr>
+
+            <!-- Revenue Sections -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'New RBT Subscription Revenue' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Daily Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Weekly Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Monthly Tariff Plan @' | translate }}</td><td></td></tr>
+
+            <tr class="section-header">
+              <td colspan="2">{{ 'New Content Download Subscriptions Revenue' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Daily Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Weekly Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Monthly Tariff Plan @' | translate }}</td><td></td></tr>
+
+            <tr class="section-header">
+              <td colspan="2">{{ 'RBT Subscription Renewals Revenue' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Daily Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Weekly Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Monthly Tariff Plan @' | translate }}</td><td></td></tr>
+
+            <tr class="section-header">
+              <td colspan="2">{{ 'RBT Content Download Renewal Revenue' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Daily Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Weekly Tariff Plan @' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Monthly Tariff Plan @' | translate }}</td><td></td></tr>
+
+            <!-- IVR Shortcode Browsing -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'IVR Shortcode Browsing' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Total MOU' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Browsing charging @ 10F/minute' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'IVR Shortcode Browsing Revenue' | translate }}</td><td></td></tr>
+
+            <!-- Total Revenue -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'Total Revenue' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Total New Subscription Revenue' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Total Renewal Revenue' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Total IVR Shortcode Browsing Revenue' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Total Gross Revenue in XAF' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Total Gross Revenue in USD' | translate }}</td><td></td></tr>
+
+            <!-- Active Subscribers -->
+            <tr class="section-header">
+              <td colspan="2">{{ 'Active Subscribers in the System' | translate }}</td>
+            </tr>
+            <tr><td>{{ 'Billed Subscribers' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Service Name' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Service Short code' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Service USSD short code' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'Country Name' | translate }}</td><td></td></tr>
+            <tr><td>{{ 'MNO' | translate }}</td><td></td></tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

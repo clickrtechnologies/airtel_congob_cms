@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h4 class="mb-3">{{ 'Name RBT' | translate }}</h4>
+
+  <table class="table table-bordered text-center align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>{{ 'S. No' | translate }}</th>
+        <th>{{ 'MSISDN' | translate }}</th>
+        <th>{{ 'Name sent by user through SMS' | translate }}</th>
+        <th>{{ 'Name RBT code' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rbt of rbtList; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ rbt.msisdn }}</td>
+        <td>{{ rbt.name }}</td>
+        <td>{{ rbt.code }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

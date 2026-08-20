@@ -1,0 +1,110 @@
+/* ===== General Layout ===== */
+.container {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Header Section ===== */
+.report-header h2 {
+  border-left: 5px solid #0d6efd;
+  padding-left: 12px;
+}
+
+.btn-success {
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-success:hover {
+  background-color: #0b5ed7;
+  color: #fff;
+}
+
+/* ===== Filter Section ===== */
+.filter-section {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.form-label {
+  color: #212529;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form-select {
+  border-radius: 6px;
+  box-shadow: none !important;
+  border: 1px solid #ced4da;
+  transition: 0.2s;
+}
+
+.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 3px rgba(13, 110, 253, 0.3);
+}
+
+/* ===== Table Styling ===== */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table thead th {
+  background-color: #000 !important;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 2px solid #0d6efd !important;
+}
+
+.sub-header th {
+  background-color: #1a1a1a !important;
+  color: #dbe4ff;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.table tbody td {
+  font-size: 14px;
+  vertical-align: middle;
+  border: 1px solid #dee2e6;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa !important;
+  transition: background 0.2s ease;
+}
+
+/* ===== Empty State ===== */
+.table tbody tr td[colspan] {
+  background-color: #f9f9f9;
+  font-style: italic;
+}
+
+/* ===== Responsive & Aesthetic ===== */
+.table-responsive {
+  border-radius: 10px;
+  overflow-x: auto;
+  background: #fff;
+}
+
+.text-primary {
+  color: #0d6efd !important;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+.container.mt-4 {
+  transform: scale(0.85);
+  transform-origin: top left;
+  width: 133.33%;
+}
+.col-md-3 {
+    width: 20% !important;
+}

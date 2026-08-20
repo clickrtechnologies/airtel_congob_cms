@@ -1,0 +1,124 @@
+<div class="container mt-4">
+  <div class="report-header d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-primary mb-0">
+      📊 {{ 'MNO Reports' | translate }}
+    </h2>
+    <button
+      class="btn btn-success shadow-sm"
+      (click)="exportToExcel()"
+      [disabled]="reportsData.length === 0"
+    >
+      <i class="bi bi-file-earmark-excel me-2"></i> {{ 'Export to Excel' | translate }}
+    </button>
+  </div>
+
+  <!-- Filters Row -->
+  <div class="filter-section row g-3 mb-4">
+    <div class="col-md-3">
+      <label class="form-label fw-semibold">🌍 {{ 'Country' | translate }}</label>
+      <select
+        class="form-select"
+        [(ngModel)]="selectedCountry"
+        (change)="onCountryChange()"
+      >
+        <option value="">{{ '-- Select Country --' | translate }}</option>
+        <option *ngFor="let c of countryList" [value]="c">{{ c }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label fw-semibold">📱 {{ 'MNO' | translate }}</label>
+      <select
+        class="form-select"
+        [(ngModel)]="selectedMno"
+        (change)="onMnoChange()"
+      >
+        <option value="">{{ '-- Select MNO --' | translate }}</option>
+        <option *ngFor="let mno of mnoList" [value]="mno.name">
+          {{ mno.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label fw-semibold">📅 {{ 'Year' | translate }}</label>
+      <select
+        class="form-select"
+        [(ngModel)]="selectedYear"
+        (change)="onYearChange()"
+      >
+        <option value="">{{ '-- Select Year --' | translate }}</option>
+        <option *ngFor="let y of availableYears" [value]="y">{{ y }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label fw-semibold">🗓️ {{ 'Month' | translate }}</label>
+      <select
+        class="form-select"
+        [(ngModel)]="selectedMonth"
+        (change)="onMonthChange()"
+      >
+        <option value="">{{ '-- Select Month --' | translate }}</option>
+        <option *ngFor="let m of availableMonths" [value]="m.value">
+          {{ m.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Reports Table -->
+  <div class="table-responsive shadow-sm rounded">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark text-center">
+        <tr>
+          <th>{{ 'S.No' | translate }}</th>
+          <th>{{ 'Date' | translate }}</th>
+          <th>{{ 'Artist' | translate }}</th>
+          <th>{{ 'Album' | translate }}</th>
+          <th>{{ 'Song' | translate }}</th>
+          <th>{{ 'Genre' | translate }}</th>
+          <th colspan="6">{{ 'Downloads / Modes' | translate }}</th>
+          <th>{{ 'RBT Set' | translate }}</th>
+          <th>{{ 'NO. of RBT service activations ' | translate }}</th>
+          <th>{{ 'NO. of downloads by the user ' | translate }}</th>
+        </tr>
+        <tr class="sub-header">
+          <th colspan="6"></th>
+          <th>{{ 'Copy' | translate }}</th>
+          <th>{{ 'IVR' | translate }}</th>
+          <th>{{ 'App' | translate }}</th>
+          <th>{{ 'SMS' | translate }}</th>
+          <th>{{ 'USSD' | translate }}</th>
+          <th>{{ 'WAP' | translate }}</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of reportsData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ row.date }}</td>
+          <td>{{ row.artist }}</td>
+          <td>{{ row.album }}</td>
+          <td>{{ row.song }}</td>
+          <td>{{ row.genre }}</td>
+          <td>{{ row.modes.copy }}</td>
+          <td>{{ row.modes.ivr }}</td>
+          <td>{{ row.modes.app }}</td>
+          <td>{{ row.modes.sms }}</td>
+          <td>{{ row.modes.ussd }}</td>
+          <td>{{ row.modes.wap }}</td>
+          <td>{{ row.rbtSet }}</td>
+          <td>{{ row.activations ?? '' }}</td>
+          <td class="text-primary fw-semibold">{{ row.downloads }}</td>
+        </tr>
+
+        <tr *ngIf="reportsData.length === 0">
+          <td colspan="15" class="text-center text-muted py-3">
+            {{ 'No records found for selected filters.' | translate }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

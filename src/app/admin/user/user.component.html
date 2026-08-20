@@ -1,0 +1,99 @@
+<div class="user-login-container mt-4">
+  <h2 class="mb-3 text-center fw-bold">👤 {{ 'User Login Management' | translate }}</h2>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <!-- <button class="btn btn-sm btn-primary" (click)="loadUsers()">
+      <i class="bi bi-arrow-clockwise me-1"></i> {{ 'Refresh Users' | translate }}
+    </button> -->
+    <span class="text-muted small">{{ 'Total Users:' | translate }} {{ userLogins.length }}</span>
+  </div>
+
+  <div class="table-responsive shadow-sm rounded">
+    <form [formGroup]="newUserForm">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>{{ 'S.No' | translate }}</th>
+            <th>{{ 'Name' | translate }}</th>
+            <th>{{ 'Email' | translate }}</th>
+            <th>{{ 'Username' | translate }}</th>
+            <th>{{ 'Password' | translate }}</th>
+            <th>{{ 'Action' | translate }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let user of userLogins; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.username }}</td>
+            <td><span class="password-mask">••••••</span></td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary" (click)="confirmLogin(user)">
+                <i class="bi bi-box-arrow-in-right"></i> {{ 'Login' | translate }}
+              </button>
+            </td>
+          </tr>
+
+          <!-- Create New User Row -->
+          <tr class="new-user-row">
+            <td>{{ userLogins.length + 1 }}</td>
+            <td>
+              <input
+                type="text"
+                class="form-control form-control-sm text-center"
+                formControlName="name"
+                placeholder="{{ 'Enter Name' | translate }}"
+              />
+            </td>
+            <td>
+              <input
+                type="email"
+                class="form-control form-control-sm text-center"
+                formControlName="email"
+                placeholder="{{ 'Enter Email' | translate }}"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                class="form-control form-control-sm text-center"
+                formControlName="username"
+                placeholder="{{ 'Enter Username' | translate }}"
+              />
+            </td>
+            <td>
+              <input
+                type="password"
+                class="form-control form-control-sm text-center"
+                formControlName="password"
+                placeholder="{{ 'Enter Password' | translate }}"
+              />
+            </td>
+            <td>
+              <button class="btn btn-sm btn-success" (click)="createUserLogin()">
+                <i class="bi bi-plus-circle"></i> {{ 'Create' | translate }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div *ngIf="showConfirmBox" class="confirm-modal-overlay">
+    <div class="confirm-modal">
+      <div class="icon-container">
+        <i class="bi bi-person-check"></i>
+      </div>
+      <h3>{{ 'Login as' | translate }} {{ selectedUser?.username }}</h3>
+      <p>{{ 'Are you sure you want to continue?' | translate }}</p>
+      <div class="button-group">
+        <button class="cancel-btn" (click)="showConfirmBox = false">{{ 'Cancel' | translate }}</button>
+        <button class="login-btn" (click)="userLoginAs(selectedUser)">{{ 'Yes, Login' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

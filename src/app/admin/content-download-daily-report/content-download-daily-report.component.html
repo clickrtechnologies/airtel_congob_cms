@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="fw-bold">{{ 'Content Daily Report' | translate }}</h3>
+  </div>
+
+  <div *ngIf="contentData.length > 0; else noContent">
+    <div class="card shadow-sm">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table id="contentDailyTable" class="table table-hover align-middle mb-0 text-center">
+            <thead class="table-dark">
+              <tr>
+                <th>{{ 'SNO.' | translate }}</th>
+                <th>{{ 'Date' | translate }}</th>
+                <th>{{ 'CP Name' | translate }}</th>
+                <th>{{ 'CP ID' | translate }}</th>
+                <th>{{ 'Song Name' | translate }}</th>
+                <th>{{ 'Song ID' | translate }}</th>
+                <th>{{ 'Artist Name' | translate }}</th>
+                <th>{{ 'Count' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of contentData; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ row.date }}</td>
+                <td>{{ row.cp }}</td>
+                <td>{{ row.cpId }}</td>
+                <td>{{ row.album }}</td>
+                <td>{{ row.id }}</td>
+                <td>{{ row.artist }}</td>
+                <td>{{ row.count }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noContent>
+    <div class="alert alert-info text-center mt-3">
+      {{ 'No records found.' | translate }}
+    </div>
+  </ng-template>
+</div>

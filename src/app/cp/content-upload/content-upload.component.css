@@ -1,0 +1,1025 @@
+.pagination .page-link {
+  border-radius: 6px;
+  margin: 0 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #b3b3b3;
+  pointer-events: none;
+}
+
+.pagination .page-link:hover {
+  background-color: #f1f1f1;
+}
+
+
+.pagination .page-item .page-link:hover {
+  background-color: #f1f1f1;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #b5b5b5;
+  cursor: not-allowed;
+}
+
+/* ✅ Tab Styling */
+.nav-tabs {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.nav-tabs .nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000 !important;
+  /* Default - Black text */
+  background-color: #f8f9fa;
+  /* Light Grey Background */
+  border: 1px solid #dee2e6;
+  border-bottom: none;
+  margin-right: 4px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.nav-tabs .nav-link:hover {
+  background-color: #e9ecef;
+}
+
+.nav-tabs .nav-link.active {
+  color: #fff !important;
+  /* White text when active */
+  background-color: #0d6efd;
+  /* Bootstrap Primary Blue */
+  border-color: #0d6efd;
+  border-bottom: 1px solid #0d6efd;
+}
+
+
+/* Grouping upload + preview buttons neatly */
+.file-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Thumbnail Upload Icon Button */
+.btn-thumb,
+.btn-video {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #0d6efd;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  font-size: 1.1rem;
+  border: none;
+}
+
+.btn-thumb:hover,
+.btn-video:hover {
+  background: #0b5ed7;
+  transform: scale(1.07);
+}
+
+/* Thumbnail Preview Styling */
+.thumb-preview {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1px solid #ccc;
+}
+
+.thumb-preview:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Wrapper */
+.file-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Upload video button style */
+.btn-video-upload {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0d6efd;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.btn-video-upload:hover {
+  background: #0b5ed7;
+  transform: scale(1.07);
+}
+
+/* Video preview (play icon) button */
+.btn-video-preview {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #198754;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.btn-video-preview:hover {
+  background: #157347;
+  transform: scale(1.1);
+}
+
+/* Small thumbnail image */
+.video-thumb {
+  width: 60px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.video-thumb:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ===== Table Wrapper ===== */
+.table-wrapper {
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.btn-content-upload {
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  height: 38px;
+  width: 130px;
+}
+
+.cp-header {
+  padding-bottom: 0.8rem;
+}
+
+.cp-header h2 {
+  background: linear-gradient(90deg, #0d6efd, #6610f2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== Table Header ===== */
+#cpTable thead {
+  background: linear-gradient(90deg, #0d6efd, #6610f2);
+  color: white;
+}
+
+/* 🔹 Button Group Layout */
+.button-group {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🔹 Base Style for All Buttons */
+.btn-action {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* ✅ Save Button */
+.btn-save {
+  background: #28a745;
+  color: white;
+}
+
+.btn-save:hover {
+  background: #1f8c39;
+  transform: scale(1.07);
+}
+
+/* ✏️ Edit Button */
+.btn-edit {
+  background: #0d6efd;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #0b5ed7;
+  transform: scale(1.07);
+}
+
+/* ❌ Delete Button */
+.btn-delete {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #b52a36;
+  transform: scale(1.07);
+}
+
+/* 🎵 Play/Pause Button */
+.btn-audio {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-audio:hover {
+  background: #5a6268;
+  transform: scale(1.07);
+}
+
+#cpTable thead th {
+  background-color: #111827 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  padding: 12px;
+  white-space: nowrap;
+}
+
+/* ===== Table Body ===== */
+#cpTable tbody td {
+  font-size: 0.92rem;
+  padding: 10px;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: #333;
+  border-top: 1px solid #e9ecef;
+}
+
+#cpTable tbody tr:hover {
+  background-color: #f3f7ff;
+  transform: scale(1.005);
+  transition: all 0.2s ease;
+}
+
+/* Fullscreen overlay */
+.fullscreen-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* semi-transparent overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  /* topmost */
+}
+
+
+
+/* Spinner container */
+.loader {
+  border: 4px solid #f3f3f3;
+  /* Light gray */
+  border-top: 4px solid #007bff;
+  /* Blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+  /* center horizontally */
+}
+
+/* Spin animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Spinner */
+.spinner {
+  border: 6px solid #f3f3f3;
+  /* Light gray */
+  border-top: 6px solid #007bff;
+  /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+/* Spin animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.image-preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.image-preview-modal img {
+  max-width: 400px;
+  max-height: 400px;
+  border-radius: 8px;
+
+}
+
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.image-modal-content {
+  position: relative;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.image-modal-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 6px;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close:hover {
+  color: red;
+}
+
+
+/* ------------------ Container ------------------ */
+.container-fluid {
+  padding: 20px 30px;
+  background-color: #f8f9fa;
+}
+
+/* ------------------ Card ------------------ */
+.card {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #dee2e6;
+}
+
+.card-body {
+  padding: 0;
+}
+
+/* ------------------ Table ------------------ */
+.table-responsive {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.content-upload-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.content-upload-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background-color: #000000;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  border-bottom: 2px solid #0d6efd;
+}
+
+.content-upload-table tbody td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Sticky first column */
+.content-upload-table thead th:first-child,
+.content-upload-table tbody td:first-child {
+  position: sticky;
+  left: 0;
+  background-color: #343a40;
+  color: #fff;
+  z-index: 4;
+  border-right: 1px solid #dee2e6;
+}
+
+.content-upload-table tbody td:first-child {
+  background-color: #f1f3f5;
+  color: #212529;
+}
+
+/* Alternating row colors */
+.content-upload-table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.content-upload-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.content-upload-table tbody tr:hover {
+  background-color: #e9ecef;
+  transition: background-color 0.2s;
+}
+
+/* Audio player */
+.audio-player {
+  width: 120px;
+  height: 30px;
+}
+
+/* Buttons */
+.btn-group .btn {
+  font-size: 0.75rem;
+  margin: 2px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+
+  .content-upload-table thead th,
+  .content-upload-table tbody td {
+    font-size: 0.85rem;
+    padding: 6px 8px;
+  }
+
+  .audio-player {
+    width: 100px;
+  }
+
+  .btn-group .btn {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .content-upload-table thead th,
+  .content-upload-table tbody td {
+    font-size: 0.8rem;
+    padding: 4px 6px;
+  }
+
+  .audio-player {
+    width: 90px;
+  }
+}
+
+/* Make table horizontally & vertically scrollable */
+.scrollable-table {
+  max-height: 400px;
+  /* vertical scroll if table exceeds 400px */
+  overflow-y: auto;
+  /* vertical scrollbar */
+  overflow-x: auto;
+  /* horizontal scrollbar */
+}
+
+/* Keep table header sticky while scrolling */
+.scrollable-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background-color: #000000;
+  color: #fff;
+}
+
+/* Optional: shadow for sticky header */
+.scrollable-table thead th::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #0d6efd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scrollable-table {
+    max-height: 300px;
+  }
+
+  table thead th,
+  table tbody td {
+    font-size: 0.8rem;
+    padding: 4px 6px;
+  }
+
+  .audio-player {
+    width: 80px;
+  }
+
+  .btn-custom {
+    font-size: 0.7rem;
+    padding: 2px 5px;
+  }
+}
+
+/* Make table inputs wider */
+.content-upload-table input.form-control-sm,
+.content-upload-table select.form-select-sm {
+  min-width: 120px;
+  /* Increase base width */
+  width: 100%;
+  /* Fill the table cell */
+  box-sizing: border-box;
+  padding: 6px 8px;
+}
+
+/* Optional: make the table scrollable if needed */
+.scrollable-table {
+  max-height: 450px;
+  /* vertical scroll if needed */
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+/* Make table header sticky */
+.scrollable-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* Adjust widths for specific columns (optional) */
+.content-upload-table th:nth-child(2),
+.content-upload-table td:nth-child(2) {
+  width: 80px;
+}
+
+/* Song ID */
+.content-upload-table th:nth-child(3),
+.content-upload-table td:nth-child(3) {
+  width: 150px;
+}
+
+/* Artist Name */
+.content-upload-table th:nth-child(4),
+.content-upload-table td:nth-child(4) {
+  width: 150px;
+}
+
+/* Album Name */
+.content-upload-table th:nth-child(5),
+.content-upload-table td:nth-child(5) {
+  width: 150px;
+}
+
+/* Song Name */
+.content-upload-table th:nth-child(6),
+.content-upload-table td:nth-child(6) {
+  width: 120px;
+}
+
+/* Genre */
+.content-upload-table th:nth-child(7),
+.content-upload-table td:nth-child(7) {
+  width: 120px;
+}
+
+/* Upload Date */
+
+
+.nav-link:hover {
+  background-color: #0d6efd !important;
+  color: #ffffff !important;
+}
+
+.nav-link.active {
+  background-color: #0d6efd !important;
+  color: #ffffff !important;
+  border-bottom: 2px solid #0d6efd !important;
+  /* keep black bottom */
+}
+
+.nav-link {
+  background-color: #ffffff !important;
+  /* black */
+  color: #000000 !important;
+  /* white text */
+  border: none !important;
+  /* remove default border */
+  border-radius: 4px 4px 0 0;
+  /* optional rounded top corners */
+  margin-right: 2px;
+}
+
+/* Center all table cell content in CP Upload */
+.content-upload-table th,
+.content-upload-table td {
+  text-align: center;
+  /* horizontal center */
+  vertical-align: middle;
+  /* vertical center */
+}
+
+/* Optional: ensure inputs/selects are centered as well */
+.content-upload-table input,
+.content-upload-table select {
+  text-align: center;
+}
+
+/* styles.css */
+/* Overlay */
+.confirm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  /* translucent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal card */
+.confirm-modal {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 16px;
+  width: 380px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: scaleIn 0.3s ease;
+}
+
+/* Icon container */
+.icon-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ffe6e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -50px auto 15px auto;
+  color: #f44336;
+  /* red icon */
+}
+
+/* Title */
+.confirm-modal h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Description */
+.confirm-modal p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 25px;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-btn {
+  background: #f0f0f0;
+  color: #333;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.cancel-btn:hover {
+  background: #e0e0e0;
+}
+
+.delete-btn {
+  background: #f44336;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.delete-btn:hover {
+  background: #d32f2f;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===== Scroll Slider Container ===== */
+.scroll-slider-container {
+  border: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, #f8fafc, #ffffff);
+}
+
+.scroll-slider-container .d-flex {
+  align-items: center;
+}
+
+.scroll-slider-container label {
+  min-width: 80px;
+}
+
+.slider-input {
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #e5e7eb, #d1d5db);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.4);
+  transition: all 0.2s ease;
+}
+
+.slider-input::-webkit-slider-thumb:hover {
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.6);
+  transform: scale(1.1);
+}
+
+.slider-input::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.4);
+  transition: all 0.2s ease;
+}
+
+.slider-input::-moz-range-thumb:hover {
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.6);
+  transform: scale(1.1);
+}
+
+.slider-input::-moz-range-track {
+  background: transparent;
+  border: none;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+}
+.container.mt-4 {
+  max-width: 100%;
+  zoom:0.85
+}
+
+
+.upload-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.upload-modal {
+ background: #fff;
+  width: 320px;        /* smaller */
+  border-radius: 8px;
+  padding: 18px 20px;  /* less padding */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: popup 0.25s ease;
+}
+
+
+@keyframes popup {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.summary-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.summary-box.success {
+  background: #e8f8ef;
+  border-left: 5px solid #28a745;
+}
+
+.summary-box.failed {
+  background: #fdecea;
+  border-left: 5px solid #dc3545;
+}
+
+.summary-box .icon {
+  font-size: 22px;
+}
+
+.label {
+  font-size: 13px;
+  color: #555;
+}
+
+.count {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+/* .btn {
+  padding: 9px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+} */
+
+.download-btn {
+  background: #dc3545;
+  color: white;
+  text-decoration: none;
+}
+
+.download-btn:hover {
+  background: #b02a37;
+}
+
+.close-btn {
+  background: #6c757d;
+  color: white;
+}
+
+.close-btn:hover {
+  background: #545b62;
+}

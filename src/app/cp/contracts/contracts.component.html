@@ -1,0 +1,333 @@
+<div class="container mt-4">
+  <div class="main-contract-banner" *ngIf="showMainContractModal">
+    <div class="banner-content">
+
+      <div class="banner-text">
+        <strong>⚠ Main Contract Required</strong>
+        <span>
+          Please upload the Main Contract(contract between krishil7 and CP) and its validity period to continue.
+        </span>
+      </div>
+
+      <div class="d-flex gap-2 align-items-center flex-wrap">
+
+        <input type="date" class="form-control form-control-sm" [(ngModel)]="mainContractFromDate" required />
+
+        <input type="date" class="form-control form-control-sm" [(ngModel)]="mainContractToDate" required />
+
+        <label class="btn btn-primary btn-sm banner-btn mb-0">
+          <i class="bi bi-upload me-1"></i> Upload Main Contract (PDF)
+          <input type="file" accept=".pdf" hidden (change)="onMainContractUpload($event)" />
+        </label>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="cp-header d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex align-items-center">
+      <span class="me-2 fs-4">📃🖊</span>
+      <h2 class="fw-bold mb-0">{{ 'Contracts' | translate }}</h2>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <form [formGroup]="form" class="container mt-4">
+      <div class="tab-content mt-3" id="contractTabsContent">
+        <div class="container mt-4" style="max-width: 650px">
+          <div class="card shadow-sm p-4 rounded-3">
+            <h5 class="mb-4 text-center fw-bold">Bulk Contract Upload</h5>
+
+            <!-- Download Excel -->
+            <div class="mb-4 text-center">
+              <button (click)="downloadPrefilledContractTemplate()" class="btn btn-outline-primary btn-sm px-3 py-2">
+                <i class="bi bi-download me-1"></i> Download Latest upload data
+              </button>
+            </div>
+
+            <!-- Excel Upload (Mandatory) -->
+            <div class="row mb-4 align-items-center">
+              <div class="col-sm-4">
+                <label class="form-label fw-semibold mb-0">
+                  Contract Details Excel <span class="text-danger">*</span>
+                </label>
+              </div>
+
+              <div class="col-sm-8 d-flex align-items-center gap-2">
+                <label for="contractExcelUpload" class="btn btn-outline-primary btn-sm px-3 py-2 mb-0">
+                  Upload Excel
+                </label>
+
+                <input type="file" id="contractExcelUpload" accept=".xlsx,.xls" (change)="onExcelUpload($event)"
+                  hidden />
+
+                <small class="text-muted" *ngIf="excelFile; else noExcel">
+                  {{ excelFile.name }}
+                </small>
+                <ng-template #noExcel>
+                  <small class="text-muted fst-italic">No file chosen</small>
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- Contract Source -->
+            <div class="row mb-3">
+              <div class="col-sm-4">
+                <label class="form-label fw-semibold">
+                  Contract Source <span class="text-danger">*</span>
+                </label>
+              </div>
+
+              <div class="col-sm-8">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="contractSource" value="existing"
+                    [(ngModel)]="contractSource" [ngModelOptions]="{ standalone: true }" (change)="onSourceChange()">
+                  <label class="form-check-label">
+                    Use Existing Contract
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="contractSource" value="new"
+                    [(ngModel)]="contractSource" [ngModelOptions]="{ standalone: true }" (change)="onSourceChange()">
+                  <label class="form-check-label">
+                    Upload New Contract PDFs (ZIP)
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Existing Contract Dropdown -->
+            <div class="row mb-3 align-items-center" *ngIf="contractSource === 'existing'">
+              <div class="col-sm-4">
+                <label class="form-label fw-semibold">
+                  Select Existing Contract <span class="text-danger">*</span>
+                </label>
+              </div>
+
+              <div class="col-sm-8">
+                <select class="form-select form-select-sm" [(ngModel)]="selectedExistingContract"
+                  (ngModelChange)="selectContract($event)" [ngModelOptions]="{ standalone: true }">
+
+                  <option [ngValue]="null">-- Select Contract --</option>
+
+                  <option *ngFor="let contract of uniqueContracts" [ngValue]="contract.code">
+                    {{ contract.name }}
+                  </option>
+
+                </select>
+              </div>
+            </div>
+
+            <!-- New Contract Name -->
+            <div class="row mb-3 align-items-center" *ngIf="contractSource === 'new'">
+              <div class="col-sm-4">
+                <label class="form-label fw-semibold">
+                  Contract Name <span class="text-danger">*</span>
+                </label>
+              </div>
+
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="contractName"
+                  [ngModelOptions]="{ standalone: true }" placeholder="Enter contract name" />
+              </div>
+            </div>
+
+            <!-- ZIP Upload -->
+            <div class="row mb-4 align-items-center" *ngIf="contractSource === 'new'">
+              <div class="col-sm-4">
+                <label class="form-label fw-semibold">
+                  Contract Files ZIP <span class="text-danger">*</span>
+                </label>
+              </div>
+
+              <div class="col-sm-8 d-flex align-items-center gap-2">
+                <label for="contractZipUpload" class="btn btn-outline-danger btn-sm px-3 py-2 mb-0">
+                  Upload ZIP
+                </label>
+
+                <input type="file" id="contractZipUpload" accept=".zip" (change)="onContractZipChange($event)" hidden />
+
+                <small class="text-muted" *ngIf="contractZipFile; else noZip">
+                  {{ contractZipFile.name }}
+                </small>
+                <ng-template #noZip>
+                  <small class="text-muted fst-italic">No file chosen</small>
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- Upload Button -->
+            <div class="text-end mt-3">
+              <button class="btn btn-success btn-sm px-4 py-2" (click)="uploadAll()" [disabled]="!isFormValid()">
+                Upload All
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <br />
+        <div class="table-wrapper shadow-sm rounded-4">
+
+          <div *ngIf="contracts.controls.length > 0; else noContractsTemplate">
+            <div class="table-responsive scrollable-table" #contractTableScrollContainer
+              (scroll)="updateScrollSliderContract()">
+              <table id="cpTable" class="table table-hover align-middle text-center mb-0">
+                <thead>
+                  <tr>
+                    <th>{{ 'S.No' | translate }}</th>
+                    <th>{{ 'Song Name' | translate }}</th>
+                    <th>{{ 'From Date' | translate }}</th>
+                    <th>{{ 'To End Date' | translate }}</th>
+                    <th>{{ 'Contract Code' | translate }}</th>
+                    <th>{{ 'Contract Name' | translate }}</th>
+                    <th>{{ 'Action' | translate }}</th>
+                  </tr>
+                </thead>
+
+                <tbody formArrayName="contracts">
+                  <tr *ngFor="let contract of contracts.controls; let i = index" [formGroupName]="i">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ contracts.at(i).get('songName')?.value }}</td>
+                    <td>
+                      <input type="date" class="form-control form-control-sm" formControlName="fromDate" />
+                    </td>
+                    <td>
+                      <input type="date" class="form-control form-control-sm" formControlName="toDate" />
+                    </td>
+                    <td>
+                      <span *ngIf="contracts.at(i).get('contractFileUrl')?.value || !isEditing[i]; else showDropdown">
+                        {{ contracts.at(i).get('contractCode')?.value }}
+                      </span>
+                      <ng-template #showDropdown>
+                        <select class="form-select form-select-sm w-100" [formControlName]="'contractCode'"
+                          (change)="onContractCodeChange(i)">
+                          <option *ngFor="let c of allContractCodes" [value]="c.code">
+                            {{ c.code }}
+                          </option>
+                        </select>
+                      </ng-template>
+                    </td>
+                    <td>
+                      {{ contracts.at(i).get('contractName')?.value }}
+                    </td>
+                    <td class="text-center">
+                      <div class="btn-group btn-group-sm" role="group">
+                        <button *ngIf="!isEditing[i]" class="btn btn-dark"
+                          [disabled]="contracts.at(i).get('contractCode')?.value" (click)="editContract(i)">
+                          {{ 'Edit' | translate }}
+                        </button>
+                        <button *ngIf="isEditing[i]" class="btn btn-success" (click)="saveContract(i)">
+                          {{ 'Save' | translate }}
+                        </button>
+                        <button class="btn btn-primary" (click)="openPreview(i)">
+                          <i class="bi bi-eye"></i> Preview
+                        </button>
+
+
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <nav *ngIf="totalPages > 1" class="mt-3">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item" [class.disabled]="currentPage === 0">
+                    <a class="page-link" (click)="goToSongPage(0)">{{ 'Start' | translate }}</a>
+                  </li>
+                  <li class="page-item" [class.disabled]="currentPage === 0">
+                    <a class="page-link" (click)="goToSongPage(currentPage - 1)">{{ 'Previous' | translate }}</a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link">{{ currentPage + 1 }}</a>
+                  </li>
+                  <li class="page-item" [class.disabled]="currentPage >= totalPages - 1">
+                    <a class="page-link" (click)="goToSongPage(currentPage + 1)">{{ 'Next' | translate }}</a>
+                  </li>
+                  <li class="page-item" [class.disabled]="currentPage >= totalPages - 1">
+                    <a class="page-link" (click)="goToSongPage(totalPages - 1)">{{ 'End' | translate }}</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <ng-template #noContractsTemplate>
+            <div class="no-data-card text-center py-5">
+              <i class="bi bi-file-earmark-x fs-1 text-muted mb-3"></i>
+              <h5 class="text-muted mb-2">
+                {{ 'No Contracts Available' | translate }}
+              </h5>
+              <p class="text-secondary mb-0">
+                {{ 'No contract data found.' | translate }}
+              </p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="fullscreen-loader" *ngIf="isLoading">
+  <div class="spinner"></div>
+</div>
+
+<!-- Contract Preview Modal -->
+<div class="modal fade" id="previewModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content preview-modal">
+
+      <div class="modal-header border-0 pb-0">
+        <h2 class="modal-title fw-bold">
+          <i class="bi bi-file-earmark-text me-2 text-primary"></i>
+          Contract Preview
+        </h2>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- Main Contract -->
+        <div class="section-title mt-2">Main Contract</div>
+
+        <div *ngIf="previewData?.mainUrl; else noMain" class="mt-2">
+          <a [href]="previewData.mainUrl" target="_blank" class="doc-btn primary">
+            <i class="bi bi-filetype-pdf me-1"></i> {{"Main Contract"}}
+          </a>
+        </div>
+
+        <ng-template #noMain>
+          <p class="text-muted small mt-1">No main contract available</p>
+        </ng-template>
+
+        <hr class="divider my-4">
+
+        <!-- Additional Documents -->
+        <div class="section-title">Additional Documents</div>
+
+        <div *ngIf="previewData?.docs?.length > 0; else noDocs" class="doc-list mt-2">
+          <div *ngFor="let d of previewData.docs">
+            <a [href]="d.additionalDocUrl" target="_blank" class="doc-btn">
+              <i class="bi bi-file-earmark-text me-1"></i> {{ d.fileName }}
+            </a>
+          </div>
+        </div>
+
+        <ng-template #noDocs>
+          <p class="text-muted small mt-1">No additional documents available</p>
+        </ng-template>
+
+      </div>
+
+      <div class="modal-footer border-0 pt-0">
+        <button class="btn btn-secondary px-4" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

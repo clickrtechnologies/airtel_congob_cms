@@ -1,0 +1,118 @@
+<div class="artist-login-container container-fluid mt-4">
+  <h2 class="mb-3 text-center fw-bold">{{ 'Artist Login Management' | translate }}</h2>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <!-- <button class="btn btn-sm btn-primary" (click)="loadUsers()">
+      <i class="bi bi-arrow-clockwise me-1"></i> {{ 'Refresh Users' | translate }}
+    </button> -->
+    <span class="text-muted small">{{ 'Total Artist:' | translate }} {{ artistLogins.length }}</span>
+  </div>
+
+  <!-- <div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <form [formGroup]="newArtistForm">
+          <table class="table table-hover align-middle text-center mb-0" id="artistTable">
+            <thead>
+              <tr>
+                <th>{{ 'S.No' | translate }}</th>
+                <th>{{ 'CP Name' | translate }}</th>
+                <th>{{ 'Artist Name' | translate }}</th>
+                <th>{{ 'Artist Email' | translate }}</th>
+                <th>{{ 'Username' | translate }}</th>
+                <th>{{ 'Password' | translate }}</th>
+                <th>{{ 'Action' | translate }}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let artist of artistLogins; let i = index" class="fade-in">
+                <td>{{ i + 1 }}</td>
+                <td>{{ artist.cpName }}</td>
+                <td>{{ artist.name }}</td>
+                <td>{{ artist.email }}</td>
+                <td>{{ artist.username }}</td>
+                <td><span class="text-muted">••••••••</span></td>
+                <td>
+                  <button class="btn btn-primary btn-sm" (click)="confirmLogin(artist)">
+                    <i class="bi bi-box-arrow-in-right me-1"></i>{{ 'Login' | translate }}
+                  </button>
+                </td>
+              </tr>
+
+              <tr class="table-form-row">
+                <td>{{ artistLoginLength + 1 }}</td>
+
+                <td>
+                  <select formControlName="cpName" class="form-control form-control-sm text-center">
+                    <option value="" disabled selected>{{ 'Select CP' | translate }}</option>
+                    <option *ngFor="let cp of cpLogins" [value]="cp.name">{{ cp.name }}</option>
+                  </select>
+                  <small *ngIf="newArtistForm.get('cpName')?.touched && newArtistForm.get('cpName')?.invalid"
+                    class="text-danger">
+                    {{ 'Required' | translate }}
+                  </small>
+                </td>
+
+                <td>
+                  <input type="text" class="form-control form-control-sm text-center" formControlName="name"
+                    placeholder="{{ 'Enter Artist Name' | translate }}" />
+                  <small *ngIf="newArtistForm.get('name')?.touched && newArtistForm.get('name')?.invalid"
+                    class="text-danger">
+                    {{ 'Required' | translate }}
+                  </small>
+                </td>
+
+                <td>
+                  <input type="email" class="form-control form-control-sm text-center" formControlName="email"
+                    placeholder="{{ 'Enter Email' | translate }}" />
+                  <small *ngIf="newArtistForm.get('email')?.hasError('required')" class="text-danger">{{ 'Required' | translate }}</small>
+                  <small *ngIf="newArtistForm.get('email')?.hasError('email')" class="text-danger">{{ 'Invalid' | translate }}</small>
+                  <small *ngIf="newArtistForm.get('email')?.hasError('emailExists')" class="text-danger">{{ 'Already Exists' | translate }}</small>
+                </td>
+
+                <td>
+                  <input type="text" class="form-control form-control-sm text-center" formControlName="username"
+                    placeholder="{{ 'Enter Username' | translate }}" />
+                  <small *ngIf="newArtistForm.get('username')?.touched && newArtistForm.get('username')?.invalid"
+                    class="text-danger">
+                    {{ 'Required' | translate }}
+                  </small>
+                </td>
+
+                <td>
+                  <input type="password" class="form-control form-control-sm text-center" formControlName="password"
+                    placeholder="{{ 'Enter Password' | translate }}" />
+                  <small *ngIf="newArtistForm.get('password')?.touched && newArtistForm.get('password')?.invalid"
+                    class="text-danger">
+                    {{ 'Required' | translate }}
+                  </small>
+                </td>
+
+                <td>
+                  <button class="btn btn-success btn-sm d-flex align-items-center gap-1" type="button" (click)="createArtistLogin()">
+                    <i class="bi bi-plus-circle"></i>{{ 'Create' | translate }}
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="showConfirmBox" class="confirm-modal-overlay">
+      <div class="confirm-modal">
+        <div class="icon-container">
+          <i class="bi bi-info-circle"></i>
+        </div>
+        <h3>{{ 'Login as Artist:' | translate }} {{ selectedArtist?.username }}</h3>
+        <p>{{ 'Are you sure you want to login as this artist?' | translate }}</p>
+        <div class="button-group">
+          <button class="cancel-btn" (click)="showConfirmBox = false">{{ 'Cancel' | translate }}</button>
+          <button class="login-btn" (click)="artistLoginAs(selectedArtist)">{{ 'Yes, Login' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>

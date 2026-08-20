@@ -1,0 +1,78 @@
+<div class="d-flex flex-column min-vh-100">
+  <app-header></app-header>
+
+  <div class="d-flex flex-grow-1">
+    <!-- Sidebar -->
+   <nav class="sidebar d-none d-md-flex flex-column p-3 bg-dark text-white"
+      *ngIf="!isSidebarHidden">
+            <ul class="nav nav-pills flex-column"> 
+          <div class="text-end mb-3">
+    <button class="btn btn-sm btn-outline-light"
+            (click)="toggleSidebar()">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+
+        <li class="nav-item">
+          <a
+            routerLink="/user/dashboard"
+            routerLinkActive="active"
+            class="nav-link d-flex align-items-center"
+          >
+            <i class="bi bi-house-door-fill me-2"></i>
+            {{ 'Dashboard' | translate }}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            routerLink="/user/approvals"
+            routerLinkActive="active"
+            class="nav-link d-flex align-items-center"
+          >
+            <i class="bi bi-check2-square me-2"></i>
+            {{ 'Approvals' | translate }}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <span
+            class="nav-link d-flex align-items-center"
+            (click)="toggleMenu()"
+            style="cursor: pointer;"
+          >
+            <i
+              class="bi"
+              [ngClass]="isMenuOpen ? 'bi-caret-down-fill' : 'bi-caret-right-fill'"
+            ></i>
+            <span class="ms-2">{{ 'Menu' | translate }}</span>
+          </span>
+        </li>
+
+        <!-- Submenu (RBT CCI) -->
+        <li class="nav-item ps-4" *ngIf="isMenuOpen">
+          <a
+            routerLink="/user/operators"
+            routerLinkActive="active"
+            class="nav-link d-flex align-items-center"
+          >
+            <i class="bi bi-person-gear me-2"></i>
+            {{ 'RBT CCI' | translate }}
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+    <button *ngIf="isSidebarHidden"
+        class="sidebar-show-btn"
+        (click)="toggleSidebar()">
+  <i class="bi bi-list"></i>
+</button>
+    <!-- Main content -->
+    <main class="main-content flex-grow-1">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,44 @@
+<div class="otp-modal-backdrop" *ngIf="visible">
+  <div class="otp-modal">
+    <div class="otp-header">
+      <h5>{{ title }}</h5>
+    </div>
+
+    <div class="otp-body">
+      <input
+        type="tel"
+        class="form-control"
+        [placeholder]="placeholder"
+        maxlength="6"
+        [(ngModel)]="otp"
+        [disabled]="isLoading || otpAttempts >= maxOtpAttempts"
+      />
+      <small class="text-muted d-block mt-2">
+        Enter the OTP sent to the administrators for approval.
+      </small>
+
+      <!-- Feedback message -->
+      <div class="text-danger mt-2">{{ message }}</div>
+
+      <!-- Loader -->
+      <div class="loader mt-2" *ngIf="isLoading"></div>
+    </div>
+
+    <div class="otp-footer">
+      <button
+        class="btn btn-secondary btn-sm"
+        (click)="cancel()"
+        [disabled]="isLoading"
+      >
+        Cancel
+      </button>
+      <button
+        class="btn btn-primary btn-sm"
+        (click)="submit()"
+        [disabled]="isLoading || otpAttempts >= maxOtpAttempts"
+      >
+        Verify
+      </button>
+    </div>
+  </div>
+</div>

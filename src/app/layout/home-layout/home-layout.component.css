@@ -1,0 +1,33 @@
+/* Fixed header height */
+header {
+  height: 60px;
+}
+
+footer {
+  height: 60px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 60px; 
+  bottom: 60px; 
+  left: 10px;
+  width: 230px;
+  background-color: #1f2a40;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 10px;
+  color: white;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Main content layout (next to sidebar) */
+.main-content {
+  padding: 20px;
+  overflow-y: auto;
+  height: calc(100vh - 120px);
+
+}
+

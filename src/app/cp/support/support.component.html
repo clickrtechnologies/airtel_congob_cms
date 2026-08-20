@@ -1,0 +1,77 @@
+<div class="support-container">
+  <div class="cp-header d-flex justify-content-between align-items-center mb-3">
+    <div class="text-center w-100">
+      <h2 class="mb-4 fw-bold">{{ 'Support or Contact Admin' | translate }}</h2>
+    </div>
+  </div>
+
+  <form [formGroup]="supportForm" (ngSubmit)="sendSupportEmail()">
+    <!-- Sender Email -->
+    <div class="form-group">
+      <label for="from">{{ 'From' | translate }}</label>
+      <input
+        id="from"
+        type="email"
+        [value]="senderEmail"
+        readonly
+        class="readonly-field"
+      />
+    </div>
+
+    <!-- To (based on company) -->
+    <div class="form-group">
+      <label for="to">{{ 'To' | translate }}</label>
+      <input
+        id="to"
+        type="email"
+        [value]="toEmail"
+        readonly
+        class="readonly-field"
+      />
+    </div>
+
+    <!-- Subject -->
+    <div class="form-group">
+      <label for="subject">{{ 'Subject' | translate }}</label>
+      <input
+        id="subject"
+        type="text"
+        formControlName="subject"
+        placeholder="{{ 'Enter subject (auto-filled if available)' | translate }}"
+      />
+      <div
+        class="error"
+        *ngIf="
+          supportForm.get('subject')?.touched &&
+          supportForm.get('subject')?.invalid
+        "
+      >
+        {{ 'Subject is required.' | translate }}
+      </div>
+    </div>
+
+    <!-- Message -->
+    <div class="form-group">
+      <label for="message">{{ 'Message' | translate }}</label>
+      <textarea
+        id="message"
+        rows="5"
+        formControlName="message"
+        placeholder="{{ 'Describe your issue or query' | translate }}"
+      ></textarea>
+      <div
+        class="error"
+        *ngIf="
+          supportForm.get('message')?.touched &&
+          supportForm.get('message')?.invalid
+        "
+      >
+        {{ 'Message is required.' | translate }}
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="supportForm.invalid" class="send-btn">
+      {{ 'Send Email' | translate }}
+    </button>
+  </form>
+</div>

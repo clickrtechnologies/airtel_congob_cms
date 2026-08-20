@@ -1,0 +1,32 @@
+/* Footer */
+footer {
+  background-color: black !important;
+  
+  color: #212529; /* Dark text */
+  text-align: center;
+  padding: 15px 0;
+  border-top: 1px solid #dee2e6; /* subtle separation */
+  width: 100%;
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+footer small {
+  color: #6c757d; /* slightly lighter text for small text */
+}
+
+footer a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Optional: fixed footer at bottom */
+app-footer {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}

@@ -1,0 +1,200 @@
+<div class="admin-dashboard">
+  <div class="bulk-container card">
+
+    <div class="card-header bg-dark text-white">
+      Bulk Song Download
+    </div>
+
+    <div class="card-body">
+
+      <p class="subtitle section-title">
+        Select how you want to download songs.
+      </p>
+
+
+      <div class="mb-3">
+        <label class="form-label"><b>Select Download Type</b></label>
+
+        <select
+          class="form-select"
+          [(ngModel)]="selectedType"
+          (change)="onTypeChange()"
+        >
+          <option value="">-- Select Option --</option>
+          <option value="songId">Song ID</option>
+          <option value="cpId">CP Name</option>
+          <option value="artist">Artist Name</option>
+          <option value="category">Category</option>
+          <option value="genre">Genre</option>
+          <option value="language">Language</option>
+          <option value="metadata">Full Metadata Download</option>
+        </select>
+      </div>
+
+      <div *ngIf="selectedType === 'songId'" class="upload-box mb-3">
+
+        <p class="subtitle">
+          Upload a text file containing <b>CMS Song Codes</b> (one per line)
+        </p>
+
+        <input
+          type="file"
+          accept=".txt"
+          class="form-control"
+          (change)="onFileSelected($event)"
+        />
+
+      </div>
+
+
+      <div *ngIf="selectedType === 'cpId'" class="mb-3">
+
+      <label class="form-label">Select CP</label>
+
+      <select class="form-select" [(ngModel)]="selectedCp">
+
+        <option value="">Select CP</option>
+
+        <option *ngFor="let cp of cpList" [value]="cp.id">
+          {{ cp.name }}
+        </option>
+
+      </select>
+
+    </div>
+
+     <div *ngIf="selectedType === 'artist'" class="mb-3">
+
+  <label class="form-label">Enter Artist Name</label>
+
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Enter Artist Name"
+    [(ngModel)]="selectedArtist"
+  />
+
+</div>
+
+
+      <div *ngIf="selectedType === 'category'" class="mb-3">
+
+        <label class="form-label">Enter Category</label>
+
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Category"
+          [(ngModel)]="selectedCategory"
+        />
+
+      </div>
+
+
+      <div *ngIf="selectedType === 'genre'" class="mb-3">
+
+        <label class="form-label">Enter Genre</label>
+
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Genre"
+          [(ngModel)]="selectedGenre"
+        />
+
+      </div>
+
+      <div *ngIf="selectedType === 'language'" class="mb-3">
+
+        <label class="form-label">Enter Language</label>
+
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Language"
+          [(ngModel)]="selectedLanguage"
+        />
+
+      </div>
+
+      <div class="text-center mt-4">
+
+      <button
+        *ngIf="selectedType"
+        class="btn btn-primary btn-lg download-btn"
+        [disabled]="isLoading"
+        (click)="submitBulkDownload()"
+      >
+        <i class="bi bi-download me-2"></i>
+        Generate & Download
+      </button>
+
+      </div>
+
+
+      <span class="ms-2 text-muted" *ngIf="isLoading">
+        Processing bulk request...
+      </span>
+
+      <hr class="divider" />
+
+
+      <div class="alert alert-danger mt-3" *ngIf="errorMsg">
+        {{ errorMsg }}
+      </div>
+
+      <div class="alert alert-success mt-3" *ngIf="successMsg">
+        {{ successMsg }}
+      </div>
+
+      <div
+        class="download-links doc-list mt-4"
+        *ngIf="metadataUrl || contentZipUrl || contractZipUrl"
+      >
+
+        <h6 class="section-title mb-3">
+          Download Generated Files
+        </h6>
+
+        <a
+          *ngIf="metadataUrl"
+          [href]="metadataUrl"
+          target="_blank"
+          class="doc-btn primary"
+        >
+
+          <i class="bi bi-file-earmark-excel"></i>
+          Metadata File
+
+        </a>
+
+
+        <a
+          *ngIf="contentZipUrl"
+          [href]="contentZipUrl"
+          target="_blank"
+          class="doc-btn"
+        >
+
+          <i class="bi bi-archive"></i>
+          Content Files ZIP
+
+        </a>
+
+        <a
+          *ngIf="contractZipUrl"
+          [href]="contractZipUrl"
+          target="_blank"
+          class="doc-btn"
+        >
+
+          <i class="bi bi-file-earmark-lock"></i>
+          Contract Documents ZIP
+
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</div>

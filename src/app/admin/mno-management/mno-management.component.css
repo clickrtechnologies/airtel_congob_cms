@@ -1,0 +1,230 @@
+/* === Global Background === */
+body {
+  background-color: #f9fafb;
+  font-family: 'Inter', sans-serif;
+}
+
+/* === Card Styling === */
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden; /* ensures rounded corners for inner table */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1100px;
+}
+
+/* === Table Styling === */
+#mnoTable {
+  background-color: #111827 !important;
+  width: 100%;
+  border-collapse: separate; /* allow rounded corners */
+  border-spacing: 0;
+  text-align: left;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+/* === Table Header === */
+#mnoTable thead {
+  background-color: #111827 !important;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+#mnoTable thead th {
+  background-color: #111827 !important;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid #0a58ca;
+  white-space: nowrap;
+}
+
+
+
+/* Rounded top edges */
+#mnoTable thead tr:first-child th:first-child {
+  border-top-left-radius: 10px;
+}
+
+#mnoTable thead tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+}
+
+/* === Table Body === */
+#mnoTable tbody tr {
+  background-color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+#mnoTable tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+#mnoTable tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+#mnoTable td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+/* Rounded bottom corners */
+#mnoTable tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+#mnoTable tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+/* === Pagination & Buttons === */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+
+
+
+
+button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* === Loading & Error Messages === */
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.error {
+  text-align: center;
+  padding: 20px;
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* === Refresh Button === */
+.refresh-btn {
+  background-color: #10b981;
+  color: white;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.refresh-btn:hover {
+  background-color: #059669;
+}
+
+.btn-outline-primary {
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #198754, #0d6efd);
+  border: none;
+}
+
+.btn-success:hover {
+  opacity: 0.9;
+}
+
+.confirm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.confirm-modal {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.icon-container {
+  background: #0d6efd;
+  color: white;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-modal h4 {
+  margin-bottom: 10px;
+  color: #212529;
+}
+
+.confirm-modal p {
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cancel-btn,
+.login-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cancel-btn {
+  background-color: #dee2e6;
+  color: #495057;
+}
+
+.cancel-btn:hover {
+  background-color: #ced4da;
+}
+
+.login-btn {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: #0b5ed7;
+}
+#mnoTable {
+  transform: scale(0.85);
+  transform-origin: top left;
+  width: 118%;
+}

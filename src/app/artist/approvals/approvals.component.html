@@ -1,0 +1,108 @@
+<div class="container-fluid mt-4">
+  <h3 class="mb-3 fw-bold">Artist Approvals</h3>
+
+  <!-- Check if there is data in the approvals array -->
+  <div *ngIf="approvals.length > 0; else noData">
+    <div class="card shadow-sm">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table id="artistApprovalTable" class="table table-hover align-middle mb-0 text-center">
+            <thead class="table-dark">
+              <tr>
+                <th>S.No.</th>
+                <th>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="selectAllApprove" [checked]="selectAllChecked"
+                      (change)="selectAllToggle($event)">
+                    <label class="form-check-label small" for="selectAllApprove">
+                      {{ selectAllLabel }}
+                    </label>
+                  </div>
+                </th>
+
+
+                <th>Artist</th>
+                <th>Album</th>
+                <th>Song</th>
+                <th>Audio</th>
+                <th>Genre/Category</th>
+                <th>Upload Date</th>
+                <th>CP Name</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Country</th>
+                <th>MNO</th>
+                <th>Song Code</th>
+                <th>QR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let song of approvals; let i = index" [ngClass]="{
+                    'table-success': song.approved === true,
+                    'table-danger': song.approved === false
+                  }">
+
+                <td>{{ i + 1 }}</td>
+                <td>
+                  <div class="d-flex justify-content-center gap-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="approval{{i}}" [value]="true"
+                        [(ngModel)]="song.approved" id="approve{{i}}">
+                      <label class="form-check-label small" for="approve{{i}}">✔ Approve</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="approval{{i}}" [value]="false"
+                        [(ngModel)]="song.approved" id="reject{{i}}">
+                      <label class="form-check-label small" for="reject{{i}}">✖ Reject</label>
+                    </div>
+                  </div>
+                </td>
+                <td>{{ song.artist }}</td>
+                <td>{{ song.album }}</td>
+                <td>{{ song.songName }}</td>
+                <td class="d-flex align-items-center justify-content-center">
+                  <button type="button" class="btn btn-primary btn-audio-circle" (click)="toggleAudio(i)"
+                    [attr.title]="isPlaying[i] ? 'Pause Audio' : 'Play Audio'">
+                    <i [ngClass]="isPlaying[i] ? 'bi bi-pause-fill' : 'bi bi-play-fill'"></i>
+                  </button>
+
+
+                  <audio [id]="'audio-player-' + i" [src]="song.audioFileUrl"></audio>
+                </td>
+
+                <td>{{ song.genre }}</td>
+                <td>{{ song.uploadDate | date:'dd-MM-yyyy' }}</td>
+                <td>{{ song.cp }}</td>
+                <td>{{ song.fromDate | date:'dd-MM-yyyy' }}</td>
+                <td>{{ song.toDate | date:'dd-MM-yyyy' }}</td>
+                <td>{{ song.country }}</td>
+                <td>{{ song.mno }}</td>
+                <td>{{ song.songCode || '--' }}</td>
+                <td>
+                  <a *ngIf="song.qrUrl" [href]="song.qrUrl" target="_blank">
+                    <img [src]="song.qrUrl" alt="QR" width="50" class="border rounded p-1 bg-white">
+                  </a>
+                  <span *ngIf="!song.qrUrl">--</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer text-end">
+        <button class="btn btn-primary" (click)="saveAllApprovals()" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+          Save All
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- No data message -->
+  <ng-template #noData>
+    <div class="alert alert-info text-center">
+      No approvals available.
+    </div>
+  </ng-template>
+</div>

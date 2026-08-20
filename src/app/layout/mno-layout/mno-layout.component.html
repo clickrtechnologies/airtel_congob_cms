@@ -1,0 +1,48 @@
+<div class="d-flex flex-column min-vh-100">
+  <app-header></app-header>
+
+  <div class="d-flex flex-grow-1">
+    <!-- Sidebar -->
+   <nav class="sidebar d-none d-md-flex flex-column p-3 bg-dark text-white"
+      *ngIf="!isSidebarHidden">
+            <ul class="nav nav-pills flex-column"> 
+          <div class="text-end mb-3">
+    <button class="btn btn-sm btn-outline-light"
+            (click)="toggleSidebar()">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+
+        <li class="nav-item">
+          <a routerLink="/mno/dashboard" routerLinkActive="active" class="nav-link d-flex align-items-center">
+            <i class="bi bi-speedometer me-2"></i> {{ 'Dashboard' | translate }}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/mno/approvals" routerLinkActive="active" class="nav-link d-flex align-items-center">
+            <i class="bi bi-patch-check-fill me-2"></i> {{ 'Approvals' | translate }}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/mno/reports" routerLinkActive="active" class="nav-link d-flex align-items-center">
+            <i class="bi bi-file-earmark-bar-graph me-2"></i> {{ 'Reports' | translate }}
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+    <button *ngIf="isSidebarHidden"
+        class="sidebar-show-btn"
+        (click)="toggleSidebar()">
+  <i class="bi bi-list"></i>
+</button>
+    <!-- Main content -->
+    <main class="main-content flex-grow-1">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <app-footer></app-footer>
+</div>

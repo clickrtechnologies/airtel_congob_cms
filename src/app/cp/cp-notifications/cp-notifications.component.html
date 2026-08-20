@@ -1,0 +1,77 @@
+<div class="d-flex justify-content-center align-items-start" style="min-height: 100vh; padding-top: 50px;">
+  <div class="card shadow-sm p-4 rounded-3" style="max-width: 700px; width: 100%;">
+    <h4 class="mb-3 text-center">{{ 'Notifications - CP' | translate }}</h4>
+
+    <form [formGroup]="cpForm">
+
+      <!-- CP Email Details -->
+      <h5 class="mb-4 text-center fw-bold">{{ 'CP Email Details' | translate }}</h5>
+
+      <!-- To Email -->
+      <div class="row mb-3 align-items-center">
+        <div class="col-sm-3">
+          <label class="form-label fw-semibold mb-0">{{ 'To:' | translate }}</label>
+        </div>
+        <div class="col-sm-9 d-flex align-items-center gap-2">
+          <input type="email" class="form-control form-control-sm" formControlName="to"
+            placeholder="{{ 'Enter CP email' | translate }}" />
+          <button type="button" class="btn btn-danger btn-sm" (click)="deleteCpTo()">
+            {{ 'Delete' | translate }}
+          </button>
+        </div>
+
+        <div class="col-sm-9 offset-sm-3 mt-1">
+          <small class="text-danger" *ngIf="cpForm.get('to')?.touched && cpForm.get('to')?.invalid">
+            <span *ngIf="cpForm.get('to')?.errors?.['required']">{{ 'To email is required.' | translate }}</span>
+            <span *ngIf="cpForm.get('to')?.errors?.['email']">{{ 'Enter a valid email.' | translate }}</span>
+          </small>
+        </div>
+      </div>
+
+      <!-- CC Emails -->
+      <div class="row mb-3 align-items-start">
+        <div class="col-sm-3">
+          <label class="form-label fw-semibold mb-0">{{ 'CC Emails:' | translate }}</label>
+        </div>
+        <div class="col-sm-9">
+          <!-- Add new CC email -->
+          <div class="d-flex gap-2 mb-2">
+            <input #ccInput type="email" class="form-control form-control-sm"
+              placeholder="{{ 'Add CC email' | translate }}" />
+            <button type="button" class="btn btn-outline-primary btn-sm"
+              (click)="addCcEmail(ccInput.value); ccInput.value=''">
+              {{ 'Add' | translate }}
+            </button>
+          </div>
+
+          <!-- List existing CC emails -->
+          <div class="d-flex flex-wrap gap-2 mb-2">
+            <span class="badge bg-secondary d-flex align-items-center gap-1"
+              *ngFor="let cc of ccEmails.controls; let i = index">
+              {{ cc.value }}
+              <button type="button" class="btn btn-sm btn-light p-0 px-1" (click)="removeCcEmail(i)">x</button>
+            </span>
+          </div>
+
+          <!-- Validation -->
+          <div *ngFor="let cc of ccEmails.controls; let i = index" class="mb-1">
+            <small class="text-danger" *ngIf="cc.touched && cc.invalid">
+              <span *ngIf="cc.errors?.['required']">{{ 'CC email is required.' | translate }}</span>
+              <span *ngIf="cc.errors?.['email']">{{ 'Enter a valid email.' | translate }}</span>
+            </small>
+          </div>
+
+          <small class="text-muted">{{ 'Max 3 CC emails allowed.' | translate }}</small>
+
+          <!-- Save Button -->
+          <div class="text-end mt-3">
+            <button type="button" class="btn btn-success btn-sm px-4 py-2" [disabled]="cpForm.invalid"
+              (click)="saveCpEmails()">
+              {{ 'Save CP Emails' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

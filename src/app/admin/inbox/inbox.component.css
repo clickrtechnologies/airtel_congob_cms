@@ -1,0 +1,215 @@
+.email-list-column {
+  max-height: 75vh;    /* Keeps list inside screen */
+  overflow-y: auto;     /* Only left column scrolls */
+  overflow-x: hidden;
+}
+
+.email-preview-column {
+  overflow: visible !important;  /* NO SCROLL HERE */
+  max-height: none !important;   /* Allow full height */
+}
+.email-body {
+  max-height: 60vh;      /* adjust height */
+  overflow-y: auto;      /* scroll only body */
+  padding-right: 8px;
+}
+
+.email-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #0d6efd;
+  max-width: 90%;
+  word-break: break-word;
+}
+
+.email-meta {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.email-from {
+  color: #444;
+}
+
+.email-date {
+  color: #777;
+}
+
+.dot {
+  color: #bbb;
+  font-weight: bold;
+}
+
+/* ====== GENERAL ====== */
+.inbox-app {
+  font-family: Inter, system-ui, -apple-system;
+  padding-bottom: 50px;
+}
+
+/* Smooth fade for elements */
+.fade-in {
+  animation: fadeIn .4s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ====== TOP BAR ====== */
+.top-bar {
+  padding: 8px 0;
+}
+
+/* Search */
+.search-box {
+  border-radius: 14px;
+  overflow: hidden;
+  min-width: 260px;
+}
+
+.search-input:focus {
+  box-shadow: none;
+}
+
+/* Icon buttons (refresh, pagination) */
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+/* ====== COMPOSE BUTTON ====== */
+.compose-btn {
+  background: linear-gradient(135deg, #6f42c1, #0d6efd);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  transition: .2s;
+}
+.compose-btn:hover { opacity: .92; }
+.compose-btn:active { transform: scale(.98); }
+
+/* ====== TABS ====== */
+.tab-btn {
+  border: none;
+  padding: 6px 16px;
+  background: #f1f3f5;
+  border-radius: 20px;
+  font-size: .85rem;
+  transition: .2s;
+}
+.tab-btn.active {
+  background: #0d6efd;
+  color: white;
+  box-shadow: 0 2px 6px rgba(13,110,253,.3);
+}
+
+/* ====== EMAIL LIST ====== */
+.inbox-item {
+  cursor: pointer;
+  padding: 12px 14px;
+  border-bottom: 1px solid #eee;
+  transition: .15s;
+}
+.inbox-item:hover {
+  background: rgba(13,110,253,.05);
+}
+
+.inbox-item.selected {
+  background: rgba(13,110,253,.1);
+  border-left: 4px solid #0d6efd;
+}
+
+/* Unread styling */
+.inbox-item.unread {
+  background: #eef4ff;
+}
+.unread-dot {
+  width: 8px;
+  height: 8px;
+  background: #0d6efd;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+/* Avatar */
+.avatar {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #6f42c1, #0d6efd);
+  color: #fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  font-weight:700;
+}
+
+/* ====== PREVIEW PANEL ====== */
+.preview-card {
+  border-radius: 12px;
+}
+
+.email-body {
+  white-space: pre-wrap;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Empty preview */
+.empty-preview {
+  padding-top: 120px;
+}
+.empty-preview h4 {
+  font-weight: 300;
+  color: #6c757d;
+}
+
+/* ====== ATTACHMENTS ====== */
+.attachments-container {
+  background: #fafbff;
+}
+
+.attachments-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.attachment-item {
+  background: #fff;
+  border: 1px solid #ececec;
+  padding: 10px;
+  border-radius: 8px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  transition: .15s;
+}
+.attachment-item:hover {
+  background: #f8f9fa;
+  border-color: #d0d0d0;
+}
+
+/* Action buttons (reply/forward) */
+.action-btn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #f1f3f5;
+  border: none;
+  transition: .15s;
+}
+.action-btn:hover {
+  background: #e7ebef;
+}
+.inbox-app {
+  transform: scale(0.75);
+  transform-origin: top left;
+  width: 133.33%; 
+}

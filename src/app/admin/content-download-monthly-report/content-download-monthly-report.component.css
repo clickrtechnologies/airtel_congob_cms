@@ -1,0 +1,78 @@
+#contentMonthlyTable th,
+#contentMonthlyTable td {
+  border: 1px solid #dee2e6;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 14px;
+}
+
+#contentMonthlyTable thead th {
+  position: sticky;
+  top: 0;
+  background-color: #212529;
+  color: #fff;
+  border-bottom: 3px solid ;
+  z-index: 2;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+}
+
+#contentMonthlyTable thead th[colspan="3"] {
+  background-color: #2e3b4e;
+  font-weight: bold;
+  border-bottom: 1px solid ;
+}
+
+#contentMonthlyTable th[rowspan="2"] {
+  vertical-align: middle !important;
+}
+
+#contentMonthlyTable tbody tr:hover {
+  background-color: #f1f3f5;
+}
+
+#contentMonthlyTable tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+#contentMonthlyTable thead th {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+#contentMonthlyTable img {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 2px;
+  background-color: #fff;
+  max-height: 50px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.container {
+  max-width: 96%;
+}
+
+h3 {
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.alert {
+  max-width: 600px;
+  margin: 0 auto;
+}

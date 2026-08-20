@@ -1,0 +1,132 @@
+.admin-dashboard {
+  background: #f3f6f9;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.upload-container.card {
+  max-width: 500px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+  background: linear-gradient(135deg, #0d6efd, #4f46e5);
+  color: #fff;
+  text-align: center;
+  padding: 8px 12px;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.card-header p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.drop-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #c7d2fe;
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.drop-box:hover {
+  border-color: #4f46e5;
+  background: #eef2ff;
+}
+
+.drop-box input {
+  display: none;
+}
+
+.upload-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d6efd, #4f46e5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.upload-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.upload-subtitle {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.file-preview {
+  margin-top: 12px;
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-size: 11px;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.upload-btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #0d6efd, #4f46e5);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.upload-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.message {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.success {
+  background: #ecfdf3;
+  color: #15803d;
+}
+
+.error {
+  background: #fef2f2;
+  color: #dc2626;
+}

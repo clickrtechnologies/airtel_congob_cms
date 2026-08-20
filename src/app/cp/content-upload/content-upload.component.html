@@ -1,0 +1,804 @@
+<form [formGroup]="form" class="container mt-4">
+  <div class="cp-header d-flex j align-items-center">
+    <h2 class="fw-bold m-0">🎧 {{ 'CP Content Upload' | translate }}</h2>
+  </div>
+
+  <ul class="nav nav-tabs" id="uploadTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="single-tab" data-bs-toggle="tab" data-bs-target="#single" type="button"
+        role="tab" aria-controls="single" aria-selected="true">
+        {{ 'Single Upload' | translate }}
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="bulk-tab" data-bs-toggle="tab" data-bs-target="#bulk" type="button" role="tab"
+        aria-controls="bulk" aria-selected="false">
+        {{ 'Bulk Upload' | translate }}
+      </button>
+    </li>
+  </ul>
+
+  <!-- Tab Content -->
+  <div class="tab-content mt-3" id="uploadTabsContent">
+    <div class="tab-pane fade show active" id="single" role="tabpanel" aria-labelledby="single-tab">
+
+      <div class="cp-header d-flex justify-content-between align-items-center ">
+        <button type="button" class="btn-content-upload tn btn-info btn-custom ms-auto" (click)="addContent()">
+          <i class="bi bi-plus-circle"></i> {{ 'Add Content' | translate }}
+        </button>
+      </div>
+
+      <div class="table-wrapper shadow-sm rounded-4">
+        <div class="table-responsive scrollable-table" #contentTableScrollContainer
+          (scroll)="updateScrollSliderSingle()">
+          <table id="cpTable" class="table table-hover align-middle text-center mb-0">
+            <thead>
+              <tr>
+                <th>{{ 'S.No' | translate }}</th>
+                <th>{{ 'Artist Name' | translate }}</th>
+                <!-- <th>{{ 'Artist Email' | translate }}</th> -->
+                <th>{{ 'Album Name' | translate }}</th>
+                <th>{{ 'Song Name' | translate }}</th>
+                <th>{{ 'Song Description' | translate }}</th>
+                <th>{{ 'Sub-Category' | translate }}</th>
+                <th>{{ 'Category' | translate }}</th>
+                <th>{{ 'Language' | translate }}</th>
+                <th>{{ 'Genre/Cat' | translate }}</th>
+                <th>{{ 'Upload Date' | translate }}</th>
+                <th>{{ 'Country' | translate }}</th>
+                <th>{{ 'MNO Name' | translate }}</th>
+                <th>{{ 'Audio File' | translate }}</th>
+                <th>{{ 'Thumbnail' | translate }}</th>
+                <th>{{ 'Year of the Song' | translate }}</th>
+                <th>{{ 'Song Duration' | translate }}</th>
+                <th>{{ 'Video' | translate }}</th>
+                <th>{{ 'Actions' | translate }}</th>
+              </tr>
+            </thead>
+
+            <tbody formArrayName="uploads">
+              <ng-container *ngFor="let grp of uploads.controls; let i = index">
+                <tr [formGroupName]="i" *ngIf="grp.value.active">
+                  <td>{{ i + 1 }}</td>
+
+                  <td>
+                    <!-- <select class="form-control form-control-sm" formControlName="artistId"
+                      (change)="onArtistChange(i)">
+                      <option value="">{{ '-- Select Artist --' | translate }}</option>
+                      <option *ngFor="let artist of artistList" [value]="artist.id">
+                        {{ artist.artistName }}
+                      </option>
+                    </select> -->
+                    <input type="text" class="form-control form-control-sm" formControlName="artistName"
+                      placeholder="--" />
+                    <div *ngIf="grp.get('artistName')?.touched && grp.get('artistName')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Artist is required' | translate }}
+                    </div>
+
+                  </td>
+
+                  <!-- <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="artistEmail"
+                      placeholder="--" />
+                  </td> -->
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="albumName" />
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="songName" />
+                    <div *ngIf="grp.get('songName')?.touched && grp.get('songName')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Song name is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="songDescription" />
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="subCategory" />
+                    <div *ngIf="grp.get('subCategory')?.touched && grp.get('subCategory')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Sub Category is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="category" />
+                    <div *ngIf="grp.get('category')?.touched && grp.get('category')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Category is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="language" />
+                    <div *ngIf="grp.get('language')?.touched && grp.get('language')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Language is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="genre" />
+                    <div *ngIf="grp.get('genre')?.touched && grp.get('genre')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Genre is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="date" class="form-control form-control-sm" formControlName="uploadDate" />
+                    <div *ngIf="grp.get('uploadDate')?.touched && grp.get('uploadDate')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Upload Date is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="country" />
+                  </td>
+
+                  <td>
+                    <!-- <select class="form-control form-control-sm" formControlName="mnoId" (change)="onMnoChange(i)">
+                      <option value="">{{ '-- Select MNO --' | translate }}</option>
+                      <option *ngFor="let mno of mnoList" [value]="mno.id">
+                        {{ mno.name }}
+                      </option>
+                    </select> -->
+                    
+                    <input type="text" class="form-control form-control-sm" formControlName="mnoName" />
+                  
+                    <div *ngIf="grp.get('mnoName')?.touched && grp.get('mnoName')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'MNO is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                      <label [for]="'audioUpload' + i" class="btn btn-outline-success btn-sm px-2 py-1 mb-0"
+                        [class.disabled]="audioUploading[i] || uploads.at(i).get('audioFileUrl')?.value"
+                        [attr.aria-disabled]="audioUploading[i] || uploads.at(i).get('audioFileUrl')?.value ? true : null">
+                        <i class="bi bi-music-note-beamed me-1" style="font-size: 0.8rem"></i>
+                        <ng-container *ngIf="!audioUploading[i]; else uploading">
+                          {{ 'Upload' | translate }}
+                        </ng-container>
+                        <ng-template #uploading>
+                          <i class="spinner-border spinner-border-sm"></i> {{ 'Uploading...' | translate }}
+                        </ng-template>
+                      </label>
+
+                      <input type="file" [id]="'audioUpload' + i" accept="audio/*" (change)="onFileChange($event, i)"
+                        [disabled]="audioUploading[i] || uploads.at(i).get('audioFileUrl')?.value" hidden />
+
+                      <small *ngIf="uploads.at(i).get('audioFileUrl')?.value" class="text-success fst-italic"
+                        style="font-size: 0.85rem;">
+                        <i class="bi bi-music-note-list me-1"></i>
+                        {{ selectedAudioFile[i] || ('File uploaded' | translate) }}
+                      </small>
+
+                      <small *ngIf="!uploads.at(i).get('audioFileUrl')?.value && !audioUploading[i]"
+                        class="text-muted fst-italic" style="font-size: 0.85rem;">
+                        {{ 'No file chosen' | translate }}
+                      </small>
+                    </div>
+                  </td>
+
+                  <td>
+                    <!-- <div class="d-flex align-items-center gap-2 flex-wrap">
+                      <label *ngIf="isEditing" [for]="'thumbnailUpload' + i"
+                        class="btn btn-outline-primary btn-sm px-2 py-1 mb-0">
+                        <i class="bi bi-image me-1" style="font-size: 0.8rem"></i>
+                        {{ 'Upload' | translate }}
+                      </label>
+
+                      <input type="file" [id]="'thumbnailUpload' + i" accept="image/*"
+                        (change)="onFileChangeThumbnail($event, i)" hidden />
+
+                      <button *ngIf="!isEditing && uploads.at(i).get('thumbnailUrl')?.value" type="button"
+                        class="btn btn-outline-info btn-sm px-2 py-1 mb-0"
+                        (click)="viewThumbnail(uploads.at(i).get('thumbnailUrl')?.value)">
+                        <i class="bi bi-eye me-1" style="font-size: 0.8rem"></i>
+                        {{ 'Preview' | translate }}
+                      </button>
+
+                      <ng-container *ngIf="uploads.at(i).get('thumbnailUrl')?.value">
+                        <img [src]="sanitizeUrl(convertDriveUrl(uploads.at(i).get('thumbnailUrl')?.value))" width="80"
+                          height="80" style="object-fit: cover; cursor:pointer"
+                          (click)="viewThumbnail(convertDriveUrl(uploads.at(i).get('thumbnailUrl')?.value))" />
+
+                      </ng-container> -->
+                    <!-- <div style="font-size:10px; color:red">
+                        {{ uploads.at(i).get('thumbnailUrl')?.value }}
+                      </div>
+
+                      <div style="font-size:10px; color:blue">
+                        {{ convertDriveUrl(uploads.at(i).get('thumbnailUrl')?.value) }}
+                      </div> -->
+
+
+                    <!-- </div> -->
+                  </td>
+
+                  <td>
+                    <input type="number" class="form-control form-control-sm" formControlName="songYear" />
+                    <div *ngIf="grp.get('songYear')?.touched && grp.get('songYear')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Year of the song is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="number" class="form-control form-control-sm" formControlName="songDuration" />
+                    <!-- <div *ngIf="grp.get('songYear')?.touched && grp.get('songYear')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Year of the song is required' | translate }}
+                    </div> -->
+                  </td>
+
+                  <td>
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                      <label *ngIf="isEditing" [for]="'videoUpload' + i"
+                        class="btn btn-outline-success btn-sm px-2 py-1 mb-0">
+                        <i class="bi bi-upload me-1" style="font-size: 0.8rem"></i>
+                        {{ 'Upload' | translate }}
+                      </label>
+
+                      <input type="file" [id]="'videoUpload' + i" accept="video/*" (change)="onVideoChange($event, i)"
+                        hidden />
+
+                      <button type="button" class="btn btn-outline-info btn-sm px-2 py-1 mb-0"
+                        (click)="openQrPopup(uploads.at(i).get('videoUrl')?.value)">
+                        <i class="bi bi-eye me-1" style="font-size: 0.8rem"></i>
+                        {{ 'Preview' | translate }}
+                      </button>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="button-group">
+                      <button *ngIf="isEditing[i]" type="button" class="btn-action btn-save" (click)="saveContent(i)">
+                        <i class="bi bi-check-circle"></i>
+                      </button>
+                      <button *ngIf="!isEditing[i]" type="button" class="btn-action btn-edit" (click)="editContent(i)">
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                      <button type="button" class="btn-action btn-delete" (click)="confirmDelete(i)">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                      <button type="button" class="btn-action btn-audio" (click)="toggleAudio(i)">
+                        <i [ngClass]="isPlaying[i] ? 'bi bi-pause-circle' : 'bi bi-play-circle'"></i>
+                      </button>
+                    </div>
+                    <audio [id]="'audio-player-' + i" [src]="uploads.at(i).get('audioFileUrl')?.value"
+                      preload="none"></audio>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+
+          <!-- Pagination -->
+          <nav *ngIf="songTotalPages > 1" class="mt-3">
+            <ul class="pagination justify-content-center">
+              <li class="page-item" [class.disabled]="currentSongPage === 0">
+                <a class="page-link" (click)="goToSongPage(0)">{{ 'Start' | translate }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentSongPage === 0">
+                <a class="page-link" (click)="goToSongPage(currentSongPage - 1)">{{ 'Previous' | translate }}</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link">{{ currentSongPage + 1 }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentSongPage >= songTotalPages - 1">
+                <a class="page-link" (click)="goToSongPage(currentSongPage + 1)">{{ 'Next' | translate }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentSongPage >= songTotalPages - 1">
+                <a class="page-link" (click)="goToSongPage(songTotalPages - 1)">{{ 'End' | translate }}</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bulk Upload -->
+    <div class="tab-pane fade" id="bulk" role="tabpanel" aria-labelledby="bulkUpload-tab">
+      <!-- Documentation Banner -->
+      <div class="alert alert-info d-flex justify-content-between align-items-center mb-4 mt-3" role="alert">
+        <div>
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>{{ 'Need Help?' | translate }}</strong>
+          <span class="ms-2">{{ 'Check the step-by-step walkthrough guide for bulk upload' | translate }}</span>
+        </div>
+        <a href="https://docs.google.com/document/d/13dr1sym3AFNWpydEk-cAUP4jSmCNvXQk/edit?usp=sharing&ouid=103764473280976997527&rtpof=true&sd=true"
+          target="_blank" rel="noopener noreferrer" class="btn btn-info btn-sm ms-3">
+          <i class="bi bi-file-earmark-pdf me-1"></i>{{ 'View Guide' | translate }}
+        </a>
+      </div>
+
+      <div class="container mt-4" style="max-width: 650px">
+        <div class="card shadow-sm p-4 rounded-3">
+          <h5 class="mb-4 text-center fw-bold">{{ 'Bulk Song Upload' | translate }}</h5>
+
+          <div class="mb-4 text-center">
+            <button (click)="downloadTemplate()" class="btn btn-outline-primary btn-sm px-3 py-2">
+              <i class="bi bi-download me-1"></i> {{ 'Download Sample Excel' | translate }}
+            </button>
+          </div>
+
+          <div class="row mb-4 align-items-center">
+            <div class="col-sm-4">
+              <label class="form-label fw-semibold mb-0">{{ 'Song Details (Excel):' | translate }}</label>
+            </div>
+            <div class="col-sm-8 d-flex align-items-center gap-2">
+              <label for="excelUpload" class="btn btn-outline-primary btn-sm px-3 py-2 mb-0">
+                <i class="bi bi-cloud-arrow-up-fill me-1"></i> {{ 'Upload Excel' | translate }}
+              </label>
+              <input type="file" id="excelUpload" accept=".xlsx, .xls" (change)="onExcelChange($event)" hidden />
+
+              <small class="text-muted" *ngIf="selectedExcelFile; else noExcel">
+                <i class="bi bi-file-earmark-excel me-1 text-success"></i>
+                {{ selectedExcelFile.name }}
+              </small>
+              <ng-template #noExcel>
+                <small class="text-muted fst-italic">{{ 'No file chosen' | translate }}</small>
+              </ng-template>
+            </div>
+          </div>
+
+          <div class="row mb-4 align-items-center">
+            <div class="col-sm-4">
+              <label class="form-label fw-semibold mb-0">
+                {{ 'Audio Files:' | translate }}
+              </label>
+            </div>
+
+            <div class="col-sm-8 d-flex align-items-center gap-2 flex-wrap">
+
+              <!-- Upload ZIP Button -->
+              <label for="audioZipUpload" class="btn btn-outline-success btn-sm px-3 py-2 mb-0"
+                [class.disabled]="isZipLoading">
+                <ng-container *ngIf="!isZipLoading; else zipLoading">
+                  <i class="bi bi-archive me-1"></i> {{ 'Upload ZIP file' | translate }}
+                </ng-container>
+
+                <ng-template #zipLoading>
+                  <span class="spinner-border spinner-border-sm me-1"></span>
+                  {{ 'Processing ZIP...' | translate }}
+                </ng-template>
+              </label>
+
+              <input type="file" id="audioZipUpload" accept=".zip" (change)="onAudioZipChange($event)" hidden />
+
+              <!-- Selected ZIP -->
+              <small class="text-muted" *ngIf="audioZipFile && isZipReady; else noAudio">
+                <i class="bi bi-music-note-list me-1 text-success"></i>
+                {{ audioZipFile.name }} {{ 'selected' | translate }}
+              </small>
+
+              <ng-template #noAudio>
+                <small class="text-muted fst-italic">
+                  {{ 'No files chosen' | translate }}
+                </small>
+              </ng-template>
+
+              <small class="text-muted">
+                {{ 'Select Audio file zip once' | translate }}
+              </small>
+            </div>
+          </div>
+
+
+          <div class="text-end mt-3">
+            <button class="btn btn-success btn-sm px-4 py-2" (click)="uploadArtistThenBulkContent()" [disabled]="
+    isUploading ||
+    !selectedExcelFile ||
+    !isZipReady
+  ">
+              <ng-container *ngIf="!isUploading; else uploading">
+                <i class="bi bi-cloud-arrow-up"></i>
+                {{ 'Upload All' | translate }}
+              </ng-container>
+
+              <ng-template #uploading>
+                <span class="spinner-border spinner-border-sm text-light"></span>
+                {{ 'Uploading...' | translate }}
+              </ng-template>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- <div class="mb-2">
+        <input type="range" class="slider-input w-100" min="0" max="100" [value]="scrollPositionSingle"
+          (input)="onTableScrollSingle($any($event.target).value)" #contentTableScrollSlider />
+      </div> -->
+
+      <div *ngIf="isUploading" class="upload-card">
+
+        <div class="upload-header">
+          <span class="material-icons upload-icon">cloud_upload</span>
+          <div>
+            <h3>Uploading Content</h3>
+            <p *ngIf="uploadStageProgress === 'UPLOADING'">
+              Uploading files... {{uploadProgress}}%
+            </p>
+
+            <p *ngIf="uploadStageProgress === 'PROCESSING'">
+              Processing songs and inserting into database...
+            </p>
+          </div>
+        </div>
+
+        <div class="progress-wrapper">
+
+          <mat-progress-bar *ngIf="uploadStageProgress === 'UPLOADING'" mode="determinate" [value]="uploadProgress">
+          </mat-progress-bar>
+
+          <mat-progress-bar *ngIf="uploadStageProgress === 'PROCESSING'" mode="indeterminate">
+          </mat-progress-bar>
+
+        </div>
+
+        <div class="upload-info">
+          <span *ngIf="uploadStageProgress === 'UPLOADING'">
+            Please wait while files are uploading.
+          </span>
+
+          <span *ngIf="uploadStageProgress === 'PROCESSING'">
+            Validating Excel and inserting songs...
+          </span>
+        </div>
+
+      </div>
+
+      <div class="table-wrapper shadow-sm rounded-4 mt-4">
+        <div class="table-responsive scrollable-table" #contentTableScrollContainer
+          (scroll)="updateScrollSliderSingle()">
+          <table id="cpTable" class="table table-hover align-middle text-center mb-0">
+            <thead>
+              <tr>
+                <th>{{ 'S.No' | translate }}</th>
+                <th>{{ 'Artist Name' | translate }}</th>
+                <!-- <th>{{ 'Artist Email' | translate }}</th> -->
+                <th>{{ 'Album Name' | translate }}</th>
+                <th>{{ 'Song Name' | translate }}</th>
+                <th>{{ 'Song Description' | translate }}</th>
+                <th>{{ 'Sub-Category' | translate }}</th>
+                <th>{{ 'Category' | translate }}</th>
+                <th>{{ 'Language' | translate }}</th>
+                <th>{{ 'Genre/Cat' | translate }}</th>
+                <th>{{ 'Upload Date' | translate }}</th>
+                <th>{{ 'Country' | translate }}</th>
+                <th>{{ 'MNO Name' | translate }}</th>
+                <th>{{ 'Audio File' | translate }}</th>
+                <th>{{ 'Thumbnail' | translate }}</th>
+                <th>{{ 'Year of the Song' | translate }}</th>
+                <th>{{ 'Song Duration' | translate }}</th>
+                <th>{{ 'Video' | translate }}</th>
+                <th>{{ 'Actions' | translate }}</th>
+              </tr>
+            </thead>
+
+            <tbody formArrayName="uploads">
+              <ng-container *ngFor="let grp of uploads.controls; let i = index">
+                <tr [formGroupName]="i" *ngIf="grp.value.active">
+                  <td>{{ i + 1 }}</td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="artistName"
+                      placeholder="--" />
+                    <div *ngIf="grp.get('artistName')?.touched && grp.get('artistName')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Artist is required' | translate }}
+                    </div>
+
+                  </td>
+
+                  <!-- <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="artistEmail"
+                      placeholder="--" />
+                  </td> -->
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="albumName" />
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="songName" />
+                    <div *ngIf="grp.get('songName')?.touched && grp.get('songName')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Song name is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="songDescription" />
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="subCategory" />
+                    <div *ngIf="grp.get('subCategory')?.touched && grp.get('subCategory')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Sub Category is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="category" />
+                    <div *ngIf="grp.get('category')?.touched && grp.get('category')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Category is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="language" />
+                    <div *ngIf="grp.get('language')?.touched && grp.get('language')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Language is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="genre" />
+                    <div *ngIf="grp.get('genre')?.touched && grp.get('genre')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Genre is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="date" class="form-control form-control-sm" formControlName="uploadDate" />
+                    <div *ngIf="grp.get('uploadDate')?.touched && grp.get('uploadDate')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Upload Date is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <input type="text" class="form-control form-control-sm" formControlName="country" />
+                  </td>
+
+                  <td>
+                    <!-- <select class="form-control form-control-sm" formControlName="mnoId" (change)="onMnoChange(i)">
+                      <option value="">{{ '-- Select MNO --' | translate }}</option>
+                      <option *ngFor="let mno of mnoList" [value]="mno.id">
+                        {{ mno.name }}
+                      </option>
+                    </select> -->
+                    <input type="text" class="form-control form-control-sm" formControlName="mnoName" />
+                    <div *ngIf="grp.get('mnoName')?.touched && grp.get('mnoName')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'MNO is required' | translate }}
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                      <label [for]="'audioUpload' + i" class="btn btn-outline-success btn-sm px-2 py-1 mb-0"
+                        [class.disabled]="audioUploading[i] || uploads.at(i).get('audioFileUrl')?.value"
+                        [attr.aria-disabled]="audioUploading[i] || uploads.at(i).get('audioFileUrl')?.value ? true : null">
+                        <i class="bi bi-music-note-beamed me-1" style="font-size: 0.8rem"></i>
+                        <ng-container *ngIf="!audioUploading[i]; else uploading">
+                          {{ 'Upload' | translate }}
+                        </ng-container>
+                        <ng-template #uploading>
+                          <i class="spinner-border spinner-border-sm"></i> {{ 'Uploading...' | translate }}
+                        </ng-template>
+                      </label>
+
+                      <input type="file" [id]="'audioUpload' + i" accept="audio/*" (change)="onFileChange($event, i)"
+                        [disabled]="audioUploading[i] || uploads.at(i).get('audioFileUrl')?.value" hidden />
+
+                      <small *ngIf="uploads.at(i).get('audioFileUrl')?.value" class="text-success fst-italic"
+                        style="font-size: 0.85rem;">
+                        <i class="bi bi-music-note-list me-1"></i>
+                        {{ selectedAudioFile[i] || ('File uploaded' | translate) }}
+                      </small>
+
+                      <small *ngIf="!uploads.at(i).get('audioFileUrl')?.value && !audioUploading[i]"
+                        class="text-muted fst-italic" style="font-size: 0.85rem;">
+                        {{ 'No file chosen' | translate }}
+                      </small>
+                    </div>
+                  </td>
+
+                  <td>
+                    <!-- <div class="d-flex align-items-center gap-2 flex-wrap">
+                      <label *ngIf="isEditing" [for]="'thumbnailUpload' + i"
+                        class="btn btn-outline-primary btn-sm px-2 py-1 mb-0">
+                        <i class="bi bi-image me-1" style="font-size: 0.8rem"></i>
+                        {{ 'Upload' | translate }}
+                      </label>
+
+                      <input type="file" [id]="'thumbnailUpload' + i" accept="image/*"
+                        (change)="onFileChangeThumbnail($event, i)" hidden />
+
+                      <button *ngIf="!isEditing && uploads.at(i).get('thumbnailUrl')?.value" type="button"
+                        class="btn btn-outline-info btn-sm px-2 py-1 mb-0"
+                        (click)="viewThumbnail(uploads.at(i).get('thumbnailUrl')?.value)">
+                        <i class="bi bi-eye me-1" style="font-size: 0.8rem"></i>
+                        {{ 'Preview' | translate }}
+                      </button>
+
+                      <ng-container *ngIf="uploads.at(i).get('thumbnailUrl')?.value">
+                        <img [src]="sanitizeUrl(convertDriveUrl(uploads.at(i).get('thumbnailUrl')?.value))" width="80"
+                          height="80" style="object-fit: cover; cursor:pointer"
+                          (click)="viewThumbnail(convertDriveUrl(uploads.at(i).get('thumbnailUrl')?.value))" />
+
+                      </ng-container>
+
+
+                    </div> -->
+                  </td>
+
+                  <td>
+                    <input type="number" class="form-control form-control-sm" formControlName="songYear" />
+                    <div *ngIf="grp.get('songYear')?.touched && grp.get('songYear')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Year of the song is required' | translate }}
+                    </div>
+                  </td>
+                  <td>
+                    <input type="number" class="form-control form-control-sm" formControlName="songDuration" />
+                    <!-- <div *ngIf="grp.get('songYear')?.touched && grp.get('songYear')?.hasError('required')"
+                      class="text-danger mt-1 small">
+                      {{ 'Year of the song is required' | translate }}
+                    </div> -->
+                  </td>
+
+                  <td>
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                      <label *ngIf="isEditing" [for]="'videoUpload' + i"
+                        class="btn btn-outline-success btn-sm px-2 py-1 mb-0">
+                        <i class="bi bi-upload me-1" style="font-size: 0.8rem"></i>
+                        {{ 'Upload' | translate }}
+                      </label>
+
+                      <input type="file" [id]="'videoUpload' + i" accept="video/*" (change)="onVideoChange($event, i)"
+                        hidden />
+
+                      <button type="button" class="btn btn-outline-info btn-sm px-2 py-1 mb-0"
+                        (click)="openQrPopup(uploads.at(i).get('videoUrl')?.value)">
+                        <i class="bi bi-eye me-1" style="font-size: 0.8rem"></i>
+                        {{ 'Preview' | translate }}
+                      </button>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="button-group">
+                      <button *ngIf="isEditing[i]" type="button" class="btn-action btn-save" (click)="saveContent(i)">
+                        <i class="bi bi-check-circle"></i>
+                      </button>
+                      <button *ngIf="!isEditing[i]" type="button" class="btn-action btn-edit" (click)="editContent(i)">
+                        <i class="bi bi-pencil-square"></i>
+                      </button>
+                      <button type="button" class="btn-action btn-delete" (click)="confirmDelete(i)">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                      <button type="button" class="btn-action btn-audio" (click)="toggleAudio(i)">
+                        <i [ngClass]="isPlaying[i] ? 'bi bi-pause-circle' : 'bi bi-play-circle'"></i>
+                      </button>
+                    </div>
+                    <audio [id]="'audio-player-' + i" [src]="uploads.at(i).get('audioFileUrl')?.value"
+                      preload="none"></audio>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+
+          <!-- Pagination -->
+          <nav *ngIf="songTotalPages > 1" class="mt-3">
+            <ul class="pagination justify-content-center">
+              <li class="page-item" [class.disabled]="currentSongPage === 0">
+                <a class="page-link" (click)="goToSongPage(0)">{{ 'Start' | translate }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentSongPage === 0">
+                <a class="page-link" (click)="goToSongPage(currentSongPage - 1)">{{ 'Previous' | translate }}</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link">{{ currentSongPage + 1 }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentSongPage >= songTotalPages - 1">
+                <a class="page-link" (click)="goToSongPage(currentSongPage + 1)">{{ 'Next' | translate }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentSongPage >= songTotalPages - 1">
+                <a class="page-link" (click)="goToSongPage(songTotalPages - 1)">{{ 'End' | translate }}</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Confirmation Popup -->
+  <div *ngIf="showConfirmBox" class="confirm-modal-overlay">
+    <div class="confirm-modal">
+      <div class="icon-container">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1m-4 0h4" />
+        </svg>
+      </div>
+      <h3>{{ 'You are about to delete this song content' | translate }}</h3>
+      <p>{{ 'Are you sure?' | translate }}</p>
+      <div class="button-group">
+        <button class="cancel-btn" (click)="cancelDelete()">{{ 'Cancel' | translate }}</button>
+        <button class="delete-btn" (click)="deleteContent()">{{ 'Delete' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="image-modal" *ngIf="showImageModal">
+  <div class="image-modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <img [src]="selectedImageUrl" alt="Artist Full Image" />
+  </div>
+</div>
+
+<div class="fullscreen-loader" *ngIf="isVideoUploading">
+  <div class="spinner"></div>
+</div>
+
+
+
+<div class="upload-overlay" *ngIf="showUploadSummaryModal">
+
+  <div class="upload-modal">
+
+    <div class="modal-header">
+      <h2>Upload Summary</h2>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="summary-box success">
+        <span class="icon">✔</span>
+        <div>
+          <div class="label">Successful Records</div>
+          <div class="count">{{ uploadSummary.success }}</div>
+        </div>
+      </div>
+
+      <div class="summary-box failed">
+        <span class="icon">❌</span>
+        <div>
+          <div class="label">Failed Records</div>
+          <div class="count">{{ uploadSummary.failed }}</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-actions">
+
+      <a *ngIf="uploadSummary.errorExcelLink" [href]="uploadSummary.errorExcelLink" target="_blank"
+        rel="noopener noreferrer" class="btn download-btn">
+        Download Error Excel
+      </a>
+
+      <button class="btn close-btn" (click)="showUploadSummaryModal = false">
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

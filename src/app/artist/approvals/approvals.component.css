@@ -1,0 +1,70 @@
+/* Audio player sizing */
+.audio-player {
+  width: 140px;
+}
+
+/* Table borders */
+#artistApprovalTable th,
+#artistApprovalTable td {
+  border: 1px solid #dee2e6;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* Sticky header for large data */
+#artistApprovalTable thead th {
+  position: sticky;
+  top: 0;
+  /* background-color: #343a40; */
+  color: #fff;
+  border-bottom: 3px solid #0d6efd;
+  z-index: 2;
+}
+
+/* Approve/Reject row highlights */
+.table-success {
+  background-color: #d1e7dd !important;
+}
+
+.table-danger {
+  background-color: #f8d7da !important;
+}
+
+#cpTable .btn-audio-circle {
+  width: 40px !important;           /* Full circular size */
+  height: 40px !important;
+  border-radius: 50% !important;    /* Fully circular */
+  /* padding: 0 !important;            Remove inherited padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+#cpTable .btn-audio-circle:hover {
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.btn-audio-circle {
+  width: 40px;           /* Full circular size */
+  height: 40px;
+  border-radius: 50%;    /* Makes it fully circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.2rem;     /* Icon size */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+  transition: all 0.2s ease;
+}
+
+.btn-audio-circle:hover {
+  background: linear-gradient(135deg, #0d6efd, #6610f2); /* Gradient hover */
+  color: #fff;
+  transform: scale(1.1);
+}

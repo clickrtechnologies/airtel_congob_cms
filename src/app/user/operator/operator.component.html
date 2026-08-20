@@ -1,0 +1,153 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="fw-bold">Operators</h3>
+    <button class="btn btn-success" (click)="openModal()">Add Operator</button>
+  </div>
+
+  <div *ngIf="operators.length > 0; else noOperators">
+    <div class="card shadow-sm">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 text-center">
+            <thead class="table-dark">
+              <tr>
+                <th>ID</th>
+                <th>Operator Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Country Code</th>
+                <th>Company Logo</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let op of operators">
+                <td>{{ op.id }}</td>
+
+                <!-- Inline edit -->
+                <td *ngIf="editingOperatorId === op.id">
+                  <input type="text" class="form-control" [formControl]="fc('operatorName')">
+                </td>
+                <td *ngIf="editingOperatorId !== op.id">{{ op.operatorName }}</td>
+
+                <td *ngIf="editingOperatorId === op.id">
+                  <input type="email" class="form-control" [formControl]="fc('email')">
+                </td>
+                <td *ngIf="editingOperatorId !== op.id">{{ op.email }}</td>
+
+                <td *ngIf="editingOperatorId === op.id">
+                  <input type="text" class="form-control" [formControl]="fc('phoneNumber')">
+                </td>
+                <td *ngIf="editingOperatorId !== op.id">{{ op.phoneNumber }}</td>
+
+                <td *ngIf="editingOperatorId === op.id">
+                  <input type="text" class="form-control" [formControl]="fc('countryCode')">
+                </td>
+                <td *ngIf="editingOperatorId !== op.id">{{ op.countryCode }}</td>
+
+                <td *ngIf="editingOperatorId === op.id">
+                  <input type="text" class="form-control" [formControl]="fc('companyLogo')">
+                </td>
+                <td *ngIf="editingOperatorId !== op.id">
+                  <img *ngIf="op.companyLogo" [src]="op.companyLogo" width="50" class="border rounded p-1 bg-white">
+                  <span *ngIf="!op.companyLogo">--</span>
+                </td>
+
+                <td>
+                  <ng-container *ngIf="editingOperatorId === op.id; else normalActions">
+                    <button class="btn btn-success btn-sm me-1" (click)="saveOperator(op.id)" [disabled]="formSubmitting">Save</button>
+                    <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Cancel</button>
+                  </ng-container>
+
+                  <ng-template #normalActions>
+                    <button class="btn btn-primary btn-sm me-1" (click)="editOperator(op)">Edit</button>
+                    <button class="btn btn-danger btn-sm me-1" (click)="deleteOperator(op.id)">Delete</button>
+                    <button class="btn btn-warning btn-sm me-1" (click)="suspendOperator(op.id)">Suspend</button>
+                    <button class="btn btn-info btn-sm me-1" (click)="operatorLogin(op.email)">Login</button>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noOperators>
+    <div class="alert alert-info text-center mt-3">
+      No operators found.
+    </div>
+  </ng-template>
+</div>
+
+<div id="addOperatorModal" class="modal" tabindex="-1" style="display:none;">
+  <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title fw-bold">Add Operator</h5>
+        <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="addOperatorForm" (ngSubmit)="submitAddOperator()" class="px-2">
+
+          <div class="row mb-3 align-items-center">
+            <label class="col-4 col-form-label fw-semibold text-end">Operator Name:</label>
+            <div class="col-8">
+              <input type="text" class="form-control" formControlName="operatorName" placeholder="Enter operator name">
+            </div>
+          </div>
+
+          <div class="row mb-3 align-items-center">
+            <label class="col-4 col-form-label fw-semibold text-end">Email:</label>
+            <div class="col-8">
+              <input type="email" class="form-control" formControlName="email" placeholder="Enter email">
+            </div>
+          </div>
+
+          <div class="row mb-3 align-items-center">
+            <label class="col-4 col-form-label fw-semibold text-end">Country Code:</label>
+            <div class="col-8">
+              <input type="text" class="form-control" formControlName="countryCode" placeholder="Enter country code">
+            </div>
+          </div>
+
+          <div class="row mb-3 align-items-center">
+            <label class="col-4 col-form-label fw-semibold text-end">Phone Number:</label>
+            <div class="col-8">
+              <input type="text" class="form-control" formControlName="phoneNumber" placeholder="Enter phone number">
+            </div>
+          </div>
+
+          <div class="row mb-3 align-items-center">
+            <label class="col-4 col-form-label fw-semibold text-end">Password:</label>
+            <div class="col-8">
+              <input type="password" class="form-control" formControlName="password" placeholder="Enter password">
+            </div>
+          </div>
+
+          <div class="row mb-3 align-items-center">
+            <label class="col-4 col-form-label fw-semibold text-end">Company Logo:</label>
+            <div class="col-8">
+              <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+              <small class="text-muted">Upload JPG or PNG logo</small>
+            </div>
+          </div>
+
+          <div class="text-center mt-3" *ngIf="addOperatorForm.get('companyLogo')?.value">
+            <img [src]="addOperatorForm.get('companyLogo')?.value" alt="Logo Preview" width="100" class="rounded shadow-sm border p-1 bg-light">
+          </div>
+
+          <div class="text-center mt-4">
+            <button class="btn btn-primary px-4" type="submit" [disabled]="formSubmitting">
+              {{ formSubmitting ? 'Adding...' : 'Add Operator' }}
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

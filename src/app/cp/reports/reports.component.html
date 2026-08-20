@@ -1,0 +1,323 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <h2 class="mb-3 text-left fw-bold">📋 {{ "CP Report" | translate }}</h2>
+
+    <div class="d-flex justify-content-between align-items-center mb-3"></div>
+
+    <div class="col-md-3">
+      <label class="form-label">{{ "Country" | translate }}</label>
+      <select
+        class="form-control"
+        [(ngModel)]="selectedCountry"
+        (ngModelChange)="onCountryChange()"
+      >
+        <option [ngValue]="''">-- Select Country --</option>
+
+        <option *ngFor="let c of countryList" [ngValue]="c">
+          {{ c }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3" *ngIf="isAdminUser">
+      <label class="form-label">{{ "CP Name" | translate }}</label>
+      <select
+        class="form-control"
+        [(ngModel)]="selectedCp"
+        (ngModelChange)="onCpChange()"
+      >
+        <option [ngValue]="''">-- Select CP Name --</option>
+        <option *ngFor="let cp of cpList" [ngValue]="cp.name">
+          {{ cp.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">{{ "MNO" | translate }}</label>
+      <select
+        class="form-control"
+        [(ngModel)]="selectedMno"
+        (ngModelChange)="onMnoChange()"
+      >
+        <option [ngValue]="''">-- Select MNO --</option>
+
+        <option *ngFor="let mno of mnoList" [ngValue]="mno">
+          {{ mno }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">{{ "Year" | translate }}</label>
+      <select
+        class="form-control"
+        [(ngModel)]="selectedYear"
+        (change)="onYearChange()"
+      >
+        <option value="">{{ "-- Select Year --" | translate }}</option>
+        <option *ngFor="let y of availableYears" [value]="y">{{ y }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">{{ "Month" | translate }}</label>
+      <select
+        class="form-control"
+        [(ngModel)]="selectedMonth"
+        (change)="onMonthChange()"
+      >
+        <option value="">{{ "-- Select Month --" | translate }}</option>
+        <option *ngFor="let m of availableMonths" [value]="m.value">
+          {{ m.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div
+    class="d-flex justify-content-between align-items-center mb-3 gap-3 flex-wrap"
+  >
+    <div class="flex-grow-1" style="max-width: 420px">
+      <label class="form-label mb-1">Search</label>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fa fa-search"></i>
+        </span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()"
+          placeholder="Search by date, country, MNO, artist, song, genre, CP..."
+        />
+      </div>
+    </div>
+
+    <button
+      class="btn btn-success"
+      (click)="exportToExcel()"
+      [disabled]="reportsData.length === 0"
+    >
+      {{ "Export to Excel" | translate }}
+    </button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+    <table
+      class="table table-bordered align-middle text-center table-hover card-body p-0"
+    >
+      <thead class="table-dark">
+        <tr>
+          <th>S.No</th>
+          <th (click)="sortTable('date')" style="cursor: pointer">
+            Date
+            {{
+              sortColumn === "date" ? (sortDirection === "asc" ? "↑" : "↓") : ""
+            }}
+          </th>
+          <th (click)="sortTable('country')" style="cursor: pointer">
+            Country
+            {{
+              sortColumn === "country"
+                ? sortDirection === "asc"
+                  ? "↑"
+                  : "↓"
+                : ""
+            }}
+          </th>
+          <th (click)="sortTable('mno')" style="cursor: pointer">
+            MNO
+            {{
+              sortColumn === "mno" ? (sortDirection === "asc" ? "↑" : "↓") : ""
+            }}
+          </th>
+          <th (click)="sortTable('artist')" style="cursor: pointer">
+            Artist Name
+            {{
+              sortColumn === "artist"
+                ? sortDirection === "asc"
+                  ? "↑"
+                  : "↓"
+                : ""
+            }}
+          </th>
+          <th (click)="sortTable('album')" style="cursor: pointer">
+            Album Name
+            {{
+              sortColumn === "album"
+                ? sortDirection === "asc"
+                  ? "↑"
+                  : "↓"
+                : ""
+            }}
+          </th>
+          <th (click)="sortTable('song')" style="cursor: pointer">
+            Song Name
+            {{
+              sortColumn === "song" ? (sortDirection === "asc" ? "↑" : "↓") : ""
+            }}
+          </th>
+          <th (click)="sortTable('genre')" style="cursor: pointer">
+            Genre
+            {{
+              sortColumn === "genre"
+                ? sortDirection === "asc"
+                  ? "↑"
+                  : "↓"
+                : ""
+            }}
+          </th>
+          <th (click)="sortTable('downloads')" style="cursor: pointer">
+            Downloads
+            {{
+              sortColumn === "downloads"
+                ? sortDirection === "asc"
+                  ? "↑"
+                  : "↓"
+                : ""
+            }}
+          </th>
+          <th (click)="sortTable('language')" style="cursor: pointer">
+            Language
+            {{
+              sortColumn === "language"
+                ? sortDirection === "asc"
+                  ? "↑"
+                  : "↓"
+                : ""
+            }}
+          </th>
+          <th (click)="sortTable('cp')" style="cursor: pointer">
+            CP Name
+            {{
+              sortColumn === "cp" ? (sortDirection === "asc" ? "↑" : "↓") : ""
+            }}
+          </th>
+          <th colspan="6">Mode of content download by the user</th>
+          <th>Total RBT downloads</th>
+        </tr>
+
+        <tr class="sub-header bg-light">
+          <th colspan="11"></th>
+          <th>Copy</th>
+          <th>IVR</th>
+          <th>App</th>
+          <th>SMS</th>
+          <th>USSD</th>
+          <th>WAP</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngIf="paginatedReports.length === 0">
+          <td colspan="18" class="text-center text-muted py-4">
+            No records found for the selected search or filters.
+          </td>
+        </tr>
+
+        <tr *ngFor="let row of paginatedReports; let i = index">
+          <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+          <td>{{ row.date }}</td>
+          <td>{{ row.country }}</td>
+          <td>{{ row.mno }}</td>
+          <td>{{ row.artist }}</td>
+          <td>{{ row.album || "-" }}</td>
+          <td>{{ row.song }}</td>
+          <td>{{ row.genre }}</td>
+          <td>{{ row.downloads }}</td>
+          <td>{{ row.language || "-" }}</td>
+          <td>{{ row.cp }}</td>
+          <td>{{ getModeValue(row, "copy") }}</td>
+          <td>{{ getModeValue(row, "ivr") }}</td>
+          <td>{{ getModeValue(row, "app") }}</td>
+          <td>{{ getModeValue(row, "sms") }}</td>
+          <td>{{ getModeValue(row, "ussd") }}</td>
+          <td>{{ getModeValue(row, "wap") }}</td>
+          <td>{{ row.downloads }}</td>
+        </tr>
+
+        <tr class="fw-bold table-secondary" *ngIf="paginatedReports.length > 0">
+          <td colspan="8">Total</td>
+          <td>{{ getTotal("downloads") }}</td>
+          <td></td>
+          <td></td>
+          <td>{{ getModeTotal("copy") }}</td>
+          <td>{{ getModeTotal("ivr") }}</td>
+          <td>{{ getModeTotal("app") }}</td>
+          <td>{{ getModeTotal("sms") }}</td>
+          <td>{{ getModeTotal("ussd") }}</td>
+          <td>{{ getModeTotal("wap") }}</td>
+          <td>{{ getTotal("downloads") }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    class="d-flex justify-content-between align-items-center mt-3"
+    *ngIf="filteredReports.length > 0"
+  >
+    <div class="text-muted small">
+      Showing
+      {{ filteredReports.length === 0 ? 0 : (currentPage - 1) * pageSize + 1 }}
+      to {{ Math.min(currentPage * pageSize, filteredReports.length) }} of
+      {{ filteredReports.length }} records
+    </div>
+
+    <nav aria-label="Report pagination">
+      <ul class="pagination pagination-sm mb-0">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button
+            class="page-link"
+            type="button"
+            (click)="changePage(currentPage - 1)"
+          >
+            Previous
+          </button>
+        </li>
+
+        <ng-container *ngFor="let page of visiblePages">
+          <li
+            *ngIf="page !== 'ellipsis-left' && page !== 'ellipsis-right'"
+            class="page-item"
+            [class.active]="currentPage === page"
+          >
+            <button class="page-link" type="button" (click)="changePage(page)">
+              {{ page }}
+            </button>
+          </li>
+
+          <li
+            *ngIf="page === 'ellipsis-left' || page === 'ellipsis-right'"
+            class="page-item disabled"
+          >
+            <span class="page-link">…</span>
+          </li>
+        </ng-container>
+
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button
+            class="page-link"
+            type="button"
+            (click)="changePage(currentPage + 1)"
+          >
+            Next
+          </button>
+        </li>
+
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button
+            class="page-link"
+            type="button"
+            (click)="changePage(totalPages)"
+          >
+            Last
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,227 @@
+/* Make table horizontally scrollable */
+.table-responsive {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Increase spacing in all table cells */
+#userApprovalTable th, 
+#userApprovalTable td,
+#mnoApprovalsTable th,
+#mnoApprovalsTable td {
+  padding: 14px 18px !important;
+  font-size: 15px;
+}
+
+/* Give each column more breathing space */
+#userApprovalTable td, #mnoApprovalsTable td {
+  min-width: 120px;   /* You can increase to 150px if needed */
+}
+
+/* Make song name, description, etc. slightly wider */
+td:nth-child(4),   /* Song Name */
+td:nth-child(5),   /* Description */
+td:nth-child(6) {  /* Language/Genre */
+  min-width: 160px;
+}
+
+/* QR & Action buttons smaller area */
+td:nth-last-child(3), td:nth-last-child(2), td:nth-last-child(1) {
+  min-width: 110px;
+}
+
+/* Keep header fixed and stylish */
+.table thead {
+  background-color: #111827 !important;
+  color: white !important;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.approval-dashboard {
+  background: #f8f9fb;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.approval-header {
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-refresh {
+  background: white !important;
+  color: #0d6efd !important;
+  border: none;
+  transition: 0.3s ease;
+}
+
+.btn-refresh:hover {
+  background: #e8f0ff !important;
+  transform: scale(1.05);
+}
+
+/* Card styling */
+.approval-card {
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* Table Styling */
+#userApprovalTable thead {
+  background: #0d6efd;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+#userApprovalTable th{
+   background-color: #111827 !important;
+    color: white !important;
+    text-align: center !important;
+    font-size: 15px !important;
+}
+#userApprovalTable td {
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f6f8fa;
+  transition: background-color 0.3s;
+}
+
+/* Audio Button */
+.btn-audio-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-audio-circle:hover {
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  color: white;
+  transform: scale(1.15);
+}
+
+/* QR Image */
+.qr-img {
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 1px solid #dee2e6;
+  background: white;
+}
+
+.qr-img:hover {
+  transform: scale(1.2);
+}
+
+/* Buttons & Footer */
+.card-footer .btn-primary {
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.card-footer .btn-primary:hover {
+  transform: scale(1.05);
+}
+
+.table-success {
+  background-color: #e9f7ef !important;
+}
+
+.table-danger {
+  background-color: #fdecea !important;
+}
+
+/* Modal Background Blur */
+.preview-modal {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 18px !important;
+  padding: 20px;
+  border: none;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* Section Title */
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  border-left: 4px solid #0d6efd;
+  padding-left: 10px;
+}
+
+/* Divider */
+.divider {
+  border-top: 1px solid #e5e7eb;
+  opacity: 0.5;
+}
+
+/* Document Button */
+.doc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #374151;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.doc-btn.primary {
+  background: #e8f0ff;
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+
+.doc-btn:hover {
+  background: #eef1f5;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Document List Spacing */
+.doc-list a {
+  margin-bottom: 8px;
+  display: inline-block;
+}
+.approval-dashboard {
+  transform: scale(0.75);
+  transform-origin: top left;
+  width: 133.33%; 
+}
+.scrollable-table {
+  height: 650px !important;             
+  overflow-y: auto !important;
+  overflow-x: auto;
+  display: block;
+}
+.scrollable-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #111827;   
+  color: white;
+  z-index: 10;
+}

@@ -1,0 +1,223 @@
+<div class="dashboard-container mt-4">
+  <div
+    class="dashboard-header d-flex justify-content-between align-items-center mb-3"
+  >
+    <h3 class="fw-bold mb-0">
+      <i class="bi bi-speedometer2 me-2"></i> {{ "MNO Dashboard" | translate }}
+    </h3>
+
+    <!-- ⭐ CP FILTER DROPDOWN -->
+    <!-- <div class="input-group w-auto">
+      <select class="form-select form-select-sm" [(ngModel)]="selectedCp" (change)="filterDashboard()">
+        <option value="all">-Select CP(All Data)-</option>
+        <option *ngFor="let cp of uniqueCpList" [value]="cp">{{ cp }}</option>
+      </select>
+    </div> -->
+  </div>
+
+  <div class="table-wrapper shadow-sm rounded-4">
+    <div class="table-responsive scrollable-table">
+      <table class="table align-middle text-center table-hover">
+        <thead>
+          <tr>
+            <th>{{ "S.No." | translate }}</th>
+            <th>{{ "Artist" | translate }}</th>
+            <th>{{ "Album" | translate }}</th>
+            <th>{{ "Song" | translate }}</th>
+            <th>{{ "Sub Category" | translate }}</th>
+            <th>{{ "Category" | translate }}</th>
+            <th>{{ "Code" | translate }}</th>
+            <th>{{ "QR" | translate }}</th>
+            <th>{{ "Genre" | translate }}</th>
+            <th>{{ "Upload" | translate }}</th>
+            <th>{{ "CP" | translate }}</th>
+            <th>{{ "Country" | translate }}</th>
+            <th>{{ "MNO" | translate }}</th>
+            <th>{{ "Contract" | translate }}</th>
+            <th>{{ "Audio" | translate }}</th>
+            <th>{{ "Status" | translate }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            *ngFor="let song of filteredApprovals; let i = index"
+            [ngClass]="{
+              'table-success': song.approvedByMno === true,
+              'table-danger': song.approvedByMno === false,
+              'table-secondary': song.approvedByMno == null
+            }"
+          >
+            <td>{{ i + 1 }}</td>
+            <td>{{ song.artist }}</td>
+            <td>{{ song.album }}</td>
+            <td>{{ song.songName }}</td>
+            <td>{{ song.subCategory || "--" }}</td>
+            <td>{{ song.category || "--" }}</td>
+            <td>{{ song.songCode || "--" }}</td>
+
+            <td>
+              <ng-container *ngIf="song.qrUrl; else noQr">
+                <img
+                  [src]="song.qrUrl"
+                  width="45"
+                  class="qr-img"
+                  (click)="openQrPopup(song.qrUrl)"
+                />
+              </ng-container>
+              <ng-template #noQr>--</ng-template>
+            </td>
+
+            <td>{{ song.genre }}</td>
+            <td>{{ song.uploadDate | date : "dd-MM-yyyy" }}</td>
+            <td>{{ song.cp }}</td>
+            <td>{{ song.country }}</td>
+            <td>{{ song.mno }}</td>
+
+            <td>
+              <button
+                class="btn btn-outline-primary btn-sm px-2 py-1"
+                (click)="openPreview(i)"
+                title="Preview Contract"
+              >
+                <i class="bi bi-eye"></i>
+              </button>
+            </td>
+
+            <td>
+              <button
+                class="btn btn-outline-primary btn-audio-circle"
+                (click)="toggleAudio(i)"
+              >
+                <i
+                  [ngClass]="
+                    isPlaying[i] ? 'bi bi-pause-fill' : 'bi bi-play-fill'
+                  "
+                ></i>
+              </button>
+              <audio
+                [id]="'audio-player-' + i"
+                [src]="song.audioFileUrl"
+              ></audio>
+            </td>
+
+            <td>
+              <span
+                class="badge bg-success"
+                *ngIf="song.approvedByMno === true"
+                >{{ "Approved" | translate }}</span
+              >
+              <span
+                class="badge bg-danger"
+                *ngIf="song.approvedByMno === false"
+                >{{ "Rejected" | translate }}</span
+              >
+              <span
+                class="badge bg-secondary"
+                *ngIf="song.approvedByMno == null"
+                >{{ "Pending" | translate }}</span
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <nav *ngIf="songTotalPages > 1" class="mt-3">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [class.disabled]="currentSongPage === 0">
+            <a class="page-link" (click)="goToSongPage(0)">{{
+              "Start" | translate
+            }}</a>
+          </li>
+
+          <li class="page-item" [class.disabled]="currentSongPage === 0">
+            <a class="page-link" (click)="goToSongPage(currentSongPage - 1)">{{
+              "Previous" | translate
+            }}</a>
+          </li>
+
+          <li class="page-item active">
+            <a class="page-link">
+              {{ currentSongPage + 1 }}
+            </a>
+          </li>
+
+          <li
+            class="page-item"
+            [class.disabled]="currentSongPage >= songTotalPages - 1"
+          >
+            <a class="page-link" (click)="goToSongPage(currentSongPage + 1)">{{
+              "Next" | translate
+            }}</a>
+          </li>
+
+          <li
+            class="page-item"
+            [class.disabled]="currentSongPage >= songTotalPages - 1"
+          >
+            <a class="page-link" (click)="goToSongPage(songTotalPages - 1)">{{
+              "End" | translate
+            }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="previewModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content preview-modal">
+      <div class="modal-header border-0 pb-0">
+        <h2 class="modal-title fw-bold">
+          <i class="bi bi-file-earmark-text me-2 text-primary"></i>
+          Contract Preview
+        </h2>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Main Contract -->
+        <div class="section-title mt-2">Main Contract</div>
+
+        <div *ngIf="previewData?.mainUrl; else noMain" class="mt-2">
+          <a
+            [href]="previewData.mainUrl"
+            target="_blank"
+            class="doc-btn primary"
+          >
+            <i class="bi bi-filetype-pdf me-1"></i> Open Contract PDF
+          </a>
+        </div>
+
+        <ng-template #noMain>
+          <p class="text-muted small mt-1">No main contract available</p>
+        </ng-template>
+
+        <hr class="divider my-4" />
+
+        <!-- Additional Documents -->
+        <div class="section-title">Additional Documents</div>
+
+        <div
+          *ngIf="previewData?.docs?.length > 0; else noDocs"
+          class="doc-list mt-2"
+        >
+          <div *ngFor="let d of previewData.docs">
+            <a [href]="d.additionalDocUrl" target="_blank" class="doc-btn">
+              <i class="bi bi-file-earmark-text me-1"></i> {{ d.fileName }}
+            </a>
+          </div>
+        </div>
+
+        <ng-template #noDocs>
+          <p class="text-muted small mt-1">No additional documents available</p>
+        </ng-template>
+      </div>
+
+      <div class="modal-footer border-0 pt-0">
+        <button class="btn btn-secondary px-4" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

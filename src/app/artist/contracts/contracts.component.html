@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <h4 class="mb-3">Artist Contracts</h4>
+
+  <div class="table-responsive" [formGroup]="form">
+    <table class="table table-bordered align-middle text-center table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>S.No.</th>
+          <th>Date</th>
+          <th>Artist Name</th>
+          <th>Album Name</th>
+          <th>Song Name</th>
+          <th>Gen/Cat</th>
+          <th colspan="2">Signed Contract Validity</th>
+          <th>CP Name</th>
+          <th>Action</th>
+        </tr>
+        <tr class="sub-header bg-light">
+          <th colspan="6"></th>
+          <th>From</th>
+          <th>To</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody formArrayName="contracts">
+        <tr *ngFor="let contract of contracts.controls; let i = index" [formGroupName]="i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ contract.get('fromDate')?.value }}</td>
+          <td>{{ contract.get('artistName')?.value }}</td>
+          <td>{{ contract.get('albumName')?.value }}</td>
+          <td>{{ contract.get('songName')?.value }}</td>
+          <td>{{ contract.get('genre')?.value }}</td>
+          <td>{{ contract.get('fromDate')?.value }}</td>
+          <td>{{ contract.get('toDate')?.value }}</td>
+          <td>{{ contract.get('cpName')?.value }}</td>
+          <td>
+            <ng-container *ngIf="contract.get('contractFileUrl')?.value">
+              <button class="btn btn-primary btn-sm px-2 py-1" (click)="downloadContract(contract.value)">
+                <i class="bi bi-download"></i> Download
+              </button>
+            </ng-container>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,265 @@
+<!-- inbox.component.html -->
+<div class="container inbox-app py-4">
+
+  <!-- Top Bar -->
+  <div class="top-bar d-flex align-items-center justify-content-between mb-3">
+
+    <div class="d-flex align-items-center gap-3">
+
+      <!-- Compose -->
+      <button class="compose-btn d-flex align-items-center gap-2" (click)="openCompose()"> <i
+          class="bi bi-pencil-square"></i> <span>Compose</span> </button>
+
+
+      <!-- Search -->
+      <div class="input-group search-box shadow-sm bg-white">
+        <span class="input-group-text bg-white border-0 ps-3">
+          <i class="bi bi-search"></i>
+        </span>
+
+        <input type="text" class="form-control border-0 bg-white search-input" placeholder="Search mail"
+          [(ngModel)]="searchTerm" (keyup.enter)="search()">
+
+        <button class="btn btn-light border-0" (click)="clearSearch()" *ngIf="searchTerm">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="d-flex gap-2 align-items-center">
+
+      <button class="btn btn-light rounded-circle shadow-sm icon-btn" (click)="refreshInbox()" title="Refresh">
+        <i class="bi bi-arrow-clockwise"></i>
+      </button>
+
+      <div class="btn-group shadow-sm">
+        <button class="btn btn-light icon-btn" [disabled]="currentPage === 0" (click)="prevPage()">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <button class="btn btn-light icon-btn" (click)="nextPage()">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="text-center my-5 fade-in">
+    <div class="spinner-border"></div>
+    <div class="mt-2 text-muted">Loading messages…</div>
+  </div>
+
+  <!-- Layout -->
+  <div class="row gx-4 fade-in" *ngIf="!loading">
+
+    <!-- LEFT PANEL -->
+    <div class="col-lg-4 email-list-column pe-0">
+
+      <!-- Tabs -->
+      <div class="mb-2 tab-buttons d-flex gap-2">
+        <button class="tab-btn" [class.active]="activeTab === 'drafts'" (click)="changeTab('drafts')">Drafts</button>
+
+        <button class="tab-btn" [class.active]="activeTab === 'inbox'" (click)="changeTab('inbox')">Inbox</button>
+
+        <button class="tab-btn" [class.active]="activeTab === 'sent'" (click)="changeTab('sent')">Sent</button>
+      </div>
+
+      <!-- Card -->
+      <div class="card shadow-sm border-0 email-list-card">
+
+        <div class="card-body p-2">
+
+          <div class="d-flex justify-content-between align-items-center mb-3 px-2">
+            <div class="fw-bold text-primary text-uppercase letter-spacing-sm">
+              {{ activeTab }}
+            </div>
+            <small class="text-muted">{{ totalMessages }} items</small>
+          </div>
+
+          <ul class="list-group list-group-flush inbox-list">
+
+            <li *ngFor="let email of emails" class="list-group-item inbox-item"
+              [class.selected]="selectedEmail === email" [class.unread]="!email.read"
+              (click)="activeTab === 'drafts' ? openDraft(email) : selectEmail(email)">
+
+              <div class="d-flex align-items-start">
+
+                <div class="unread-dot me-2" *ngIf="!email.read"></div>
+
+                <div class="avatar me-3">
+                  {{ initials(email.from) }}
+                </div>
+
+                <div class="w-100">
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="email-subject text-truncate" [class.fw-bold]="!email.read">
+                      {{ email.subject || '(No Subject)' }}
+                    </div>
+
+                    <small class="email-date text-muted">
+                      {{ email.receivedDate | date:'short' }}
+                    </small>
+                  </div>
+
+                  <div class="d-flex justify-content-between mt-1">
+                    <small class="email-from text-muted text-truncate">
+                      {{ email.from }}
+                    </small>
+
+                    <button class="btn btn-sm btn-link p-0 me-2" (click)="toggleStar(email); $event.stopPropagation()">
+                      <i class="bi" [ngClass]="{
+                           'bi-star-fill text-warning': email.starred,
+                           'bi-star': !email.starred
+                         }"></i>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="card-footer bg-white d-flex justify-content-between small">
+          <span class="text-muted">Page {{ currentPage + 1 }}</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="col-lg-8 email-preview-column">
+
+      <!-- Empty State -->
+      <div *ngIf="!selectedEmail" class="empty-preview text-center fade-in">
+        <i class="bi bi-envelope-open display-4 text-secondary opacity-50"></i>
+        <h4 class="mt-3 fw-light">Select an email to read</h4>
+      </div>
+
+      <!-- Email Preview -->
+      <div *ngIf="selectedEmail" class="card shadow-sm preview-card fade-in">
+
+        <div class="card-header bg-white d-flex justify-content-between align-items-start">
+          <div>
+            <h4 class="mb-1 text-primary fw-bold">
+              {{ selectedEmail.from || '(No Subject)' }}
+            </h4>
+
+            <small class="text-muted">
+              From: <strong>{{ selectedEmail.subject }}</strong> •
+              {{ selectedEmail.receivedDate | date:'medium' }}
+            </small>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button class="btn btn-sm action-btn" (click)="reply(selectedEmail)">
+              <i class="bi bi-reply"></i>
+            </button>
+            <button class="btn btn-sm action-btn" (click)="replyAll(selectedEmail)">
+              <i class="bi bi-reply-all"></i>
+            </button>
+            <button class="btn btn-sm action-btn" (click)="forward(selectedEmail)">
+              <i class="bi bi-share"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body email-body">
+          <div [innerHTML]="formatEmail(selectedEmail.content || '')"></div>
+        </div>
+
+        <!-- Attachments -->
+        <div *ngIf="selectedEmail && selectedEmail.attachments && selectedEmail.attachments.length > 0"
+          class="attachments-container border-top p-3">
+
+          <h6 class="mb-2">Attachments ({{ selectedEmail.attachments.length }})</h6>
+
+          <div class="attachments-grid">
+
+            <div class="attachment-item" *ngFor="let a of selectedEmail.attachments">
+
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-paperclip fs-5"></i>
+                <div>
+                  <div class="fw-semibold">{{ a.name }}</div>
+                  <small class="text-muted">{{ a.size | number }} bytes</small>
+                </div>
+              </div>
+
+              <a *ngIf="a.url" [href]="a.url" target="_blank" class="btn btn-sm btn-outline-primary">
+                View / Download
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Compose Modal -->
+<div class="modal fade" id="composeModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-white">
+        <h5 class="modal-title"> {{ composeMode === 'compose' ? 'Compose' : composeMode === 'reply' ? 'Reply' :
+          composeMode === 'replyAll' ? 'Reply All' : 'Forward' }} </h5> <button type="button" class="btn-close"
+          data-bs-dismiss="modal" aria-label="Close" (click)="closeComposeModal()"></button>
+      </div>
+      <div class="modal-body"> <!-- To / Cc / Subject -->
+        <div class="mb-2"> <input class="form-control mb-2" placeholder="To" [(ngModel)]="compose.to" name="to"> <input
+            class="form-control mb-2" placeholder="Cc" [(ngModel)]="compose.cc" name="cc"> <input
+            class="form-control mb-2" placeholder="Subject" [(ngModel)]="compose.subject" name="subject"> </div>
+        <!-- Reply Editor (shows when reply/replyAll) -->
+        <div *ngIf="composeMode === 'reply' || composeMode === 'replyAll'" class="reply-editor">
+          <div class="reply-header-info"> Replying to <strong>{{ replyOriginal?.from }}</strong> </div>
+          <div class="reply-body-container"> <textarea class="reply-input" [(ngModel)]="compose.body" name="replyBody"
+              placeholder="Write your reply..."></textarea>
+            <div class="quoted-block mt-2" *ngIf="replyOriginal">
+              <div class="quoted-header"> On {{ replyOriginal.receivedDate | date:'medium' }}, {{ replyOriginal.from }}
+                wrote: </div>
+              <div class="quoted-content" [innerHTML]="formatEmail(replyOriginal?.content || '')"></div>
+            </div>
+          </div>
+        </div> <!-- Forward / Compose editor -->
+        <div *ngIf="composeMode === 'compose' || composeMode === 'forward'"> <textarea rows="10"
+            class="form-control mb-2" [(ngModel)]="compose.body" name="body"
+            placeholder="Write your message..."></textarea> </div> <!-- Attachments UI -->
+        <div class="mb-2 d-flex align-items-center gap-2"> <button type="button" class="btn btn-outline-secondary"
+            (click)="triggerFilePicker()"> <i class="bi bi-paperclip"></i> Attach files </button> <small
+            class="text-muted">{{ compose.attachments.length }} file(s) attached</small> </div> <input type="file"
+          id="filePicker" style="display:none" (change)="onAttachmentSelected($event)" multiple>
+        <div *ngIf="compose.attachments.length > 0" class="attachments-list mb-3">
+          <div *ngFor="let a of compose.attachments; let i = index"
+            class="d-flex align-items-center justify-content-between attach-row">
+            <div class="d-flex align-items-center gap-2"> <i class="bi bi-file-earmark-text"></i>
+              <div>
+                <div class="fw-semibold">{{ a.name }}</div> <small class="text-muted">{{ a.size | number }}
+                  bytes</small>
+              </div>
+            </div>
+            <div> <button class="btn btn-sm btn-link text-danger" (click)="removeAttachment(i)">Remove</button> </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-between align-items-center">
+        <div class="d-flex gap-2"> <button class="btn btn-primary" [disabled]="sending"
+            (click)=" composeMode === 'reply' ? sendReply() : composeMode === 'replyAll' ? sendReplyAll() : composeMode === 'forward' ? sendForward() : sendMail() ">
+            <span *ngIf="!sending">Send</span> <span *ngIf="sending"><i
+                class="bi bi-arrow-repeat spinner-border-sm"></i> Sending...</span> </button> <button type="button"
+            class="btn btn-outline-secondary" (click)="saveDraft()">Save draft</button> <button type="button"
+            class="btn btn-outline-secondary" (click)="clearCompose()">Clear</button> </div> <small
+          class="text-muted">Auto-save every 30s</small>
+      </div>
+    </div>
+  </div>
+</div>

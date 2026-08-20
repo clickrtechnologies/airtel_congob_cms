@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h4>Artist Profile</h4>
+  <form *ngIf="artist">
+    <div class="mb-3">
+      <label>CP Name</label>
+      <input class="form-control" [(ngModel)]="artist.cpName" [readonly]="!editMode" name="cpName" />
+    </div>
+    <div class="mb-3">
+      <label>Artist Name</label>
+      <input class="form-control" [(ngModel)]="artist.artistName" [readonly]="!editMode" name="artistName" />
+    </div>
+    <div class="mb-3">
+      <label>Artist Email ID</label>
+      <input class="form-control" [(ngModel)]="artist.artistEmail" [readonly]="!editMode" name="artistEmail" />
+    </div>
+    <div class="mb-3">
+      <label>Username</label>
+      <input class="form-control" [(ngModel)]="artist.username" [readonly]="!editMode" name="username" />
+    </div>
+    <div class="mb-3">
+      <label>Password</label>
+      <input class="form-control" [(ngModel)]="artist.password" [readonly]="!editMode" type="password" name="password" />
+    </div>
+
+    <button *ngIf="!editMode" class="btn btn-primary" (click)="editMode = true">Edit</button>
+    <button *ngIf="editMode" class="btn btn-success" (click)="saveChanges()">Save</button>
+  </form>
+</div>

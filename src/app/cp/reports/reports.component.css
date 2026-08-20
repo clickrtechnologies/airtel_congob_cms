@@ -1,0 +1,120 @@
+.table th,
+.table td {
+  vertical-align: middle !important;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.pagination .page-link {
+  min-width: 36px;
+  color: #0d6efd;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: #fff;
+}
+
+.pagination .page-item.disabled .page-link {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.table thead th {
+  cursor: pointer;
+}
+
+.input-group-text {
+  background-color: #f3f4f6;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.15);
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+ 
+.table thead th {
+  background-color: #111827 !important;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid #0a58ca;
+  white-space: nowrap;
+}
+
+.table tbody td {
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.table tbody tr:hover {
+  background-color: #eef3ff;
+  transition: 0.2s;
+}
+
+.sub-header th {
+  font-weight: 500;
+  font-size: 13px;
+  text-align: center;
+  background-color: #f8f9fa !important; 
+}
+ 
+.btn-outline-primary,
+.btn-success {
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+ 
+.btn-outline-primary i,
+.btn-success i {
+  font-size: 0.9rem;
+  margin-right: 4px;
+}
+ 
+.table-responsive {
+  overflow-x: auto;
+  max-width: 100%;
+  padding-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+}
+ 
+.table th,
+.table td {
+  white-space: nowrap;
+  vertical-align: middle !important;
+}
+
+.container-fluid {
+  padding-top: 20px;
+}
+
+.col-md-3 {
+  width: 20% !important;
+  flex: 0 0 20% !important;
+  max-width: 20% !important;
+}
+
+.container.mt-4 {
+  zoom: 0.85;
+  transform-origin: top left;
+  width: 133.33%; 
+}

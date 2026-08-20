@@ -1,0 +1,59 @@
+<div class="container mt-3">
+  <h4 class="mb-3">Dashboard - Artist</h4>
+
+  <div class="table-responsive table-scroll-container">
+    <table id="artistDashboard" class="table table-bordered align-middle text-center table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>S.No.</th>
+          <th>Artist Name</th>
+          <th>Album Name</th>
+          <th>Song Name</th>
+          <th>Song Code</th>
+          <th>Genre</th>
+          <th>Date of Upload</th>
+          <th>CP Name</th>
+          <th>From Date</th>
+          <th>To Date</th>
+          <th>Licensed Country</th>
+          <th>Licensed MNO</th>
+          <th>QR</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let song of approvals; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ song.artist }}</td>
+          <td>{{ song.album }}</td>
+          <td>{{ song.songName }}</td>
+          <td>{{ song.songCode || "--" }}</td>
+          <td>{{ song.genre }}</td>
+          <td>{{ song.uploadDate }}</td>
+          <td>{{ song.cp }}</td>
+          <td>{{ song.fromDate }}</td>
+          <td>{{ song.toDate }}</td>
+          <td>{{ song.country }}</td>
+          <td>{{ song.mno }}</td>
+          <!-- <td>
+            <a *ngIf="song.qrUrl" [href]="song.qrUrl" target="_blank">
+              <img [src]="song.qrCodeUrl" alt="QR" width="40">
+            </a>
+          </td> -->
+          <td>
+            <ng-container *ngIf="song.qrUrl">
+                  <img [src]="song.qrUrl" alt="QR" width="40" style="cursor: pointer"
+                    (click)="openQrPopup(song.qrUrl)" />
+                </ng-container>
+            <span *ngIf="!song.qrUrl">--</span>
+          </td>
+          <td>
+            <span class="badge bg-success" *ngIf="song.approved">Approved</span>
+            <span class="badge bg-danger" *ngIf="song.approved === false">Rejected</span>
+            <span class="badge bg-secondary" *ngIf="song.approved == null">Pending</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

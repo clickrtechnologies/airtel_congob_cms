@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="fw-bold">{{ 'Content Monthly Report' | translate }}</h3>
+  </div>
+
+  <div *ngIf="contentMonthlyData.length > 0; else noContent">
+    <div class="card shadow-sm">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table id="contentMonthlyTable" class="table table-hover align-middle mb-0 text-center">
+            <thead class="table-dark">
+              <tr>
+                <th rowspan="2">{{ 'S.No.' | translate }}</th>
+                <th rowspan="2">{{ 'Date' | translate }}</th>
+                <th rowspan="2">{{ 'Artist Name' | translate }}</th>
+                <th rowspan="2">{{ 'Album Name' | translate }}</th>
+                <th rowspan="2">{{ 'Song Name' | translate }}</th>
+                <th rowspan="2">{{ 'Gen/Cat' | translate }}</th>
+                <th rowspan="2">{{ 'No. of Downloads by User' | translate }}</th>
+                <th colspan="3">{{ 'Mode of Content Download by the User' | translate }}</th>
+                <th rowspan="2">{{ 'CP Name' | translate }}</th>
+              </tr>
+              <tr>
+                <th>{{ 'Copy' | translate }}</th>
+                <th>{{ 'IVR' | translate }}</th>
+                <th>{{ 'APP' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of contentMonthlyData; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ row.date }}</td>
+                <td>{{ row.artist }}</td>
+                <td>{{ row.albumName }}</td>
+                <td>{{ row.album }}</td>
+                <td>{{ row.genre }}</td>
+                <td>{{ row.downloads }}</td>
+                <td>{{ row.copy }}</td>
+                <td>{{ row.ivr }}</td>
+                <td>{{ row.appCount }}</td>
+                <td>{{ row.cp }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noContent>
+    <div class="alert alert-info text-center mt-3">
+      {{ 'No monthly records found.' | translate }}
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,314 @@
+<div class="approval-dashboard mt-4">
+  <div
+    class="approval-header d-flex justify-content-between align-items-center mb-3"
+  >
+    <h3 class="fw-bold mb-0">{{ "MNO Approvals" | translate }}</h3>
+
+    <!-- CP Filter Dropdown -->
+    <!-- <div class="input-group w-auto">
+      <select class="form-select form-select-sm" [(ngModel)]="selectedCp" (change)="filterMnoApprovals()">
+        <option value="all">-Select CP(All Data)-</option>
+        <option *ngFor="let cp of uniqueCpList" [value]="cp">
+          {{ cp }}
+        </option>
+      </select>
+    </div> -->
+  </div>
+
+  <div *ngIf="approvals.length > 0; else noData">
+    <div class="card approval-card shadow-lg border-0 rounded-4">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          
+          <table
+            id="mnoApprovalsTable"
+            class="table align-middle text-center table-hover"
+          >
+            <thead>
+              <tr>
+                <th>{{ "S.No." | translate }}</th>
+                <th>
+                  <div
+                    class="form-check d-flex justify-content-center align-items-center gap-1"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [checked]="selectAllChecked"
+                      (change)="selectAllToggle($event)"
+                    />
+                    <label class="form-check-label small">{{
+                      selectAllLabel | translate
+                    }}</label>
+                  </div>
+                </th>
+                <th>{{ "Artist" | translate }}</th>
+                <th>{{ "Album" | translate }}</th>
+                <th>{{ "Song" | translate }}</th>
+                <th>{{ "Sub Category" | translate }}</th>
+                <th>{{ "Category" | translate }}</th>
+                <th>{{ "Code" | translate }}</th>
+                <th>{{ "QR" | translate }}</th>
+                <th>{{ "Genre" | translate }}</th>
+                <th>{{ "CP" | translate }}</th>
+                <th>{{ "Country" | translate }}</th>
+                <th>{{ "MNO" | translate }}</th>
+                <th>{{ "Contract" | translate }}</th>
+                <th>{{ "Expiry" | translate }}</th>
+                <th>{{ "Audio" | translate }}</th>
+                <th>{{ "Rejection Reason" | translate }}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr
+                *ngFor="let song of filteredApprovals; let i = index"
+                [ngClass]="{
+                  'table-success':
+                    song.controls.get('approved')?.value === true,
+                  'table-danger': song.controls.get('approved')?.value === false
+                }"
+              >
+                <td>{{ i + 1 }}</td>
+                <td>
+                  <form
+                    [formGroup]="song.controls"
+                    class="d-flex justify-content-center gap-2"
+                  >
+                    <div class="form-check form-check-inline">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        formControlName="approved"
+                        [value]="true"
+                        id="approve-{{ i }}"
+                      />
+                      <label
+                        class="form-check-label text-success fw-semibold"
+                        for="approve-{{ i }}"
+                        >✔</label
+                      >
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        formControlName="approved"
+                        [value]="false"
+                        id="reject-{{ i }}"
+                      />
+                      <label
+                        class="form-check-label text-danger fw-semibold"
+                        for="reject-{{ i }}"
+                        >✖</label
+                      >
+                    </div>
+                  </form>
+                </td>
+
+                <td>{{ song.artist }}</td>
+                <td>{{ song.album }}</td>
+                <td
+                  class="text-truncate"
+                  style="max-width: 150px"
+                  title="{{ song.songName }}"
+                >
+                  {{ song.songName }}
+                </td>
+                <td>{{ song.subCategory || "--" }}</td>
+                <td>{{ song.category || "--" }}</td>
+                <td>{{ song.songCode || "--" }}</td>
+
+                <td>
+                  <ng-container *ngIf="song.qrUrl; else noQr">
+                    <img
+                      [src]="song.qrUrl"
+                      width="40"
+                      class="qr-img"
+                      (click)="openQrPopup(song.qrUrl)"
+                    />
+                  </ng-container>
+                  <ng-template #noQr>--</ng-template>
+                </td>
+
+                <td>{{ song.genre }}</td>
+                <td>{{ song.cp }}</td>
+                <td>{{ song.country }}</td>
+                <td>{{ song.mno }}</td>
+
+                <td>
+                  <button
+                    class="btn btn-outline-primary btn-sm px-2 py-1"
+                    (click)="openPreview(i)"
+                    title="Preview Contract"
+                  >
+                    <i class="bi bi-eye"></i>
+                  </button>
+                </td>
+
+                <td>{{ song.toDate | date : "dd-MM-yyyy" }}</td>
+
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary btn-audio-circle"
+                    (click)="toggleAudio(i)"
+                    [attr.title]="
+                      isPlaying[i]
+                        ? ('Pause Audio' | translate)
+                        : ('Play Audio' | translate)
+                    "
+                  >
+                    <i
+                      [ngClass]="
+                        isPlaying[i] ? 'bi bi-pause-fill' : 'bi bi-play-fill'
+                      "
+                    ></i>
+                  </button>
+                  <audio
+                    [id]="'audio-player-' + i"
+                    [src]="song.audioFileUrl"
+                  ></audio>
+                </td>
+
+                <td>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm rounded-pill text-center"
+                    [disabled]="song.controls.get('approved')?.value"
+                    [(ngModel)]="song.rejectionReason"
+                    placeholder="{{ 'Reason if rejected' | translate }}"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <nav *ngIf="songTotalPages > 1" class="mt-3">
+            <ul class="pagination justify-content-center">
+              <li class="page-item" [class.disabled]="currentSongPage === 0">
+                <a class="page-link" (click)="goToSongPage(0)">{{
+                  "Start" | translate
+                }}</a>
+              </li>
+
+              <li class="page-item" [class.disabled]="currentSongPage === 0">
+                <a
+                  class="page-link"
+                  (click)="goToSongPage(currentSongPage - 1)"
+                  >{{ "Previous" | translate }}</a
+                >
+              </li>
+
+              <li class="page-item active">
+                <a class="page-link">
+                  {{ currentSongPage + 1 }}
+                </a>
+              </li>
+
+              <li
+                class="page-item"
+                [class.disabled]="currentSongPage >= songTotalPages - 1"
+              >
+                <a
+                  class="page-link"
+                  (click)="goToSongPage(currentSongPage + 1)"
+                  >{{ "Next" | translate }}</a
+                >
+              </li>
+
+              <li
+                class="page-item"
+                [class.disabled]="currentSongPage >= songTotalPages - 1"
+              >
+                <a
+                  class="page-link"
+                  (click)="goToSongPage(songTotalPages - 1)"
+                  >{{ "End" | translate }}</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="card-footer text-end p-3">
+        <button
+          class="btn btn-primary px-4 py-2 rounded-pill shadow-sm"
+          (click)="saveAllApprovals()"
+          [disabled]="isSaving"
+        >
+          <span
+            *ngIf="isSaving"
+            class="spinner-border spinner-border-sm me-2"
+          ></span>
+          💾 {{ "Save All Approvals" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="alert alert-info text-center mt-4 rounded-4 shadow-sm">
+      {{ "No approvals available." | translate }}
+    </div>
+  </ng-template>
+</div>
+
+<div class="modal fade" id="previewModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content preview-modal">
+      <div class="modal-header border-0 pb-0">
+        <h2 class="modal-title fw-bold">
+          <i class="bi bi-file-earmark-text me-2 text-primary"></i>
+          Contract Preview
+        </h2>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Main Contract -->
+        <div class="section-title mt-2">Main Contract</div>
+
+        <div *ngIf="previewData?.mainUrl; else noMain" class="mt-2">
+          <a
+            [href]="previewData.mainUrl"
+            target="_blank"
+            class="doc-btn primary"
+          >
+            <i class="bi bi-filetype-pdf me-1"></i> Open Contract PDF
+          </a>
+        </div>
+
+        <ng-template #noMain>
+          <p class="text-muted small mt-1">No main contract available</p>
+        </ng-template>
+
+        <hr class="divider my-4" />
+
+        <!-- Additional Documents -->
+        <div class="section-title">Additional Documents</div>
+
+        <div
+          *ngIf="previewData?.docs?.length > 0; else noDocs"
+          class="doc-list mt-2"
+        >
+          <div *ngFor="let d of previewData.docs">
+            <a [href]="d.additionalDocUrl" target="_blank" class="doc-btn">
+              <i class="bi bi-file-earmark-text me-1"></i> {{ d.fileName }}
+            </a>
+          </div>
+        </div>
+
+        <ng-template #noDocs>
+          <p class="text-muted small mt-1">No additional documents available</p>
+        </ng-template>
+      </div>
+
+      <div class="modal-footer border-0 pt-0">
+        <button class="btn btn-secondary px-4" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

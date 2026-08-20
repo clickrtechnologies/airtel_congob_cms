@@ -1,0 +1,54 @@
+/* Page background */
+.login-page {
+  background: linear-gradient(135deg, #eef2f7, #dbeafe);
+}
+
+/* Card */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 2.2rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Header icon */
+.login-icon i {
+  font-size: 2.2rem;
+  color: #4f46e5;
+}
+
+/* Inputs */
+.form-control {
+  border-radius: 0.75rem;
+}
+
+.form-control:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 0.15rem rgba(79, 70, 229, 0.25);
+}
+
+/* Password toggle */
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.password-toggle i {
+  font-size: 1.1rem;
+}
+
+/* Button */
+.btn-primary {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  border: none;
+  border-radius: 0.75rem;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #4338ca, #4f46e5);
+}

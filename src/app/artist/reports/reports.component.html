@@ -1,0 +1,116 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <h2 class="mb-3 text-left fw-bold"> 📋 Artist Report</h2>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Country</label>
+      <select
+        class="form-control"
+        [(ngModel)]="selectedCountry"
+        (change)="onCountryChange()"
+      >
+        <option value="">-- Select Country --</option>
+        <option *ngFor="let c of countryList" [value]="c">{{ c }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">MNO</label>
+      <select
+        class="form-control"
+        [(ngModel)]="selectedMno"
+        (change)="onMnoChange()"
+      >
+        <option value="">-- Select MNO --</option>
+        <option *ngFor="let mno of mnoList" [value]="mno.name">
+          {{ mno.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Year</label>
+      <select
+        class="form-control"
+        [(ngModel)]="selectedYear"
+        (change)="onYearChange()"
+      >
+        <option value="">-- Select Year --</option>
+        <option *ngFor="let y of availableYears" [value]="y">{{ y }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Month</label>
+      <select
+        class="form-control"
+        [(ngModel)]="selectedMonth"
+        (change)="onMonthChange()"
+      >
+        <option value="">-- Select Month --</option>
+        <option *ngFor="let m of availableMonths" [value]="m.value">
+          {{ m.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 text-end">
+    <button
+      class="btn btn-success"
+      (click)="exportToExcel()"
+      [disabled]="reportsData.length === 0"
+    >
+      Export to Excel
+    </button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle text-center table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>S.No</th>
+          <th>Date</th>
+          <th>Artist</th>
+          <th>Album</th>
+          <th>Song</th>
+          <th>Genre</th>
+          <th colspan="6">Downloads / Modes</th>
+          <th>RBT Set</th>
+          <th>CP Name</th>
+        </tr>
+        <tr class="sub-header bg-light">
+          <th colspan="6"></th>
+          <th>Copy</th>
+          <th>IVR</th>
+          <th>App</th>
+          <th>SMS</th>
+          <th>USSD</th>
+          <th>WAP</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of reportsData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ row.date }}</td>
+          <td>{{ row.artist }}</td>
+          <td>{{ row.album }}</td>
+          <td>{{ row.song }}</td>
+          <td>{{ row.genre }}</td>
+          <td>{{ row.modes.copy }}</td>
+          <td>{{ row.modes.ivr }}</td>
+          <td>{{ row.modes.app }}</td>
+          <td>{{ row.modes.sms }}</td>
+          <td>{{ row.modes.ussd }}</td>
+          <td>{{ row.modes.wap }}</td>
+          <td>{{ row.rbtSet }}</td>
+          <td>{{ row.cp }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

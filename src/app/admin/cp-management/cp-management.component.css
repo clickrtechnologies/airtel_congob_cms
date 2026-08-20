@@ -1,0 +1,169 @@
+.container-fluid {
+  background-color: #f8f9fb;
+  min-height: 100vh;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#cpTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+#cpTable thead th {
+  background-color: #111827 !important;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid #0a58ca;
+  white-space: nowrap;
+}
+
+#cpTable tbody td {
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#cpTable tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+#cpTable tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+#cpTable tbody tr:hover {
+  background-color: #eef3ff;
+  transition: 0.2s;
+}
+
+#cpTable input {
+  font-size: 0.9rem;
+  padding: 4px 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  text-align: center;
+}
+
+#cpTable input:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 4px rgba(13, 110, 253, 0.2);
+}
+
+.btn-outline-primary {
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #198754, #0d6efd);
+  border: none;
+}
+
+.btn-success:hover {
+  opacity: 0.9;
+}
+
+.confirm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.confirm-modal {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.icon-container {
+  background: #0d6efd;
+  color: white;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-modal h4 {
+  margin-bottom: 10px;
+  color: #212529;
+}
+
+.confirm-modal p {
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cancel-btn,
+.login-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cancel-btn {
+  background-color: #dee2e6;
+  color: #495057;
+}
+
+.cancel-btn:hover {
+  background-color: #ced4da;
+}
+
+.login-btn {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: #0b5ed7;
+}
+
+
+@keyframes fadeInScale {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+#cpTable {
+  transform: scale(0.85);
+  transform-origin: top left;
+  width: 118%;
+}

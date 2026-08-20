@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <h4 class="mb-3">{{ 'Name RBT' | translate }}</h4>
+
+  <table class="table table-bordered text-center align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>{{ 'S. No' | translate }}</th>
+        <th>{{ 'MSISDN' | translate }}</th>
+        <th>{{ 'Name for Name RBT' | translate }}</th>
+        <th>{{ 'Audio File (Actions)' | translate }}</th>
+        <th>{{ 'RBT Code' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rbt of rbtList; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ rbt.msisdn }}</td>
+        <td>{{ rbt.name }}</td>
+        <td>
+          <input
+            type="file"
+            accept="audio/*"
+            class="form-control mb-2"
+            (change)="onAudioUpload($event, i)"
+          />
+
+          <div *ngIf="rbt.audioUrl">
+            <button class="btn btn-sm btn-primary me-1" (click)="playAudio(i)">
+              {{ 'Preview' | translate }}
+            </button>
+            <button
+              class="btn btn-sm btn-success me-1"
+              (click)="saveAudio(i)"
+              [disabled]="!rbt.hasPreviewed"
+            >
+              {{ 'Save' | translate }}
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="deleteAudio(i)">
+              {{ 'Delete' | translate }}
+            </button>
+          </div>
+        </td>
+        <td>{{ rbt.code }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,13 @@
+<div class="container mt-4">
+  <h4>CMS Settings</h4>
+  <div class="mb-3">
+    <label for="themeColor">Select Theme Color:</label>
+    <select id="themeColor" class="form-select" [(ngModel)]="themeColor">
+      <option value="default">Default</option>
+      <option value="dark">Dark</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+    </select>
+  </div>
+  <button class="btn btn-success" (click)="saveTheme()">Save Settings</button>
+</div>

@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h4>MNO Profile</h4>
+  <form *ngIf="mno">
+    <div class="mb-3">
+      <label>Telco Name</label>
+      <input class="form-control" [(ngModel)]="mno.telcoName" [readonly]="!editMode" name="telcoName" />
+    </div>
+    <div class="mb-3">
+      <label>MNO Personnel Name</label>
+      <input class="form-control" [(ngModel)]="mno.personnelName" [readonly]="!editMode" name="personnelName" />
+    </div>
+    <div class="mb-3">
+      <label>MNO Personnel Email ID</label>
+      <input class="form-control" [(ngModel)]="mno.personnelEmail" [readonly]="!editMode" name="personnelEmail" />
+    </div>
+    <div class="mb-3">
+      <label>Username</label>
+      <input class="form-control" [(ngModel)]="mno.username" [readonly]="!editMode" name="username" />
+    </div>
+    <div class="mb-3">
+      <label>Password</label>
+      <input class="form-control" [(ngModel)]="mno.password" [readonly]="!editMode" type="password" name="password" />
+    </div>
+
+    <button *ngIf="!editMode" class="btn btn-primary" (click)="editMode = true">Edit</button>
+    <button *ngIf="editMode" class="btn btn-success" (click)="saveChanges()">Save</button>
+  </form>
+</div>

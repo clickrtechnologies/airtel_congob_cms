@@ -1,0 +1,32 @@
+#contentDailyTable th,
+#contentDailyTable td {
+  border: 1px solid #dee2e6;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#contentDailyTable thead th {
+  position: sticky;
+  top: 0;
+  background-color: #212529;
+  color: #fff;
+  border-bottom: 3px solid;
+  z-index: 2;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+#contentDailyTable tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+#contentDailyTable tbody tr:hover {
+  background-color: #f1f3f5;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+
+

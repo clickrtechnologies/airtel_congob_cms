@@ -1,0 +1,42 @@
+<div class="d-flex flex-column min-vh-100">
+  <app-header></app-header>
+
+  <div class="container d-flex align-items-center justify-content-center flex-grow-1 bg-light">
+    <div class="card p-4 shadow-lg rounded-4" style="width: 100%; max-width: 400px;">
+      <div class="text-center mb-4">
+        <h2 class="fw-bold">Login</h2>
+        <p class="text-muted">Enter your credentials</p>
+      </div>
+      <form (ngSubmit)="login()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" [(ngModel)]="email" name="email" id="email" class="form-control rounded-3"
+            placeholder="Enter your email" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" id="password"
+              class="form-control rounded-3" placeholder="Enter your password" required />
+            <button type="button" class="btn btn-outline-secondary" (click)="showPassword = !showPassword"
+              tabindex="-1">
+              <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+            </button>
+          </div>
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger py-1 small" role="alert">
+          {{ errorMessage }}
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary rounded-3" [disabled]="loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            {{ loading ? 'Logging in...' : 'Login' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

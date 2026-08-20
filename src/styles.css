@@ -1,0 +1,113 @@
+/* 🌐 Global Styles */
+body {
+  font-family: 'Inter', 'Roboto', sans-serif;
+  background-color: #f5f7fa;
+  color: #000000;
+  margin: 0;
+  overflow: auto; /* Allow scrolling */
+}
+
+/* 📌 Navigation */
+.nav-link {
+  padding: 8px 14px !important;
+  border-radius: 6px;
+  color: #ffffff !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: #2563eb !important; /* Professional blue */
+  color: #fff !important;
+  margin: 2px !important;
+}
+
+/* 🔴 Danger Badge Fix */
+.bg-danger {
+  margin-top: 11px;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+/* 📊 Material Table Styling */
+.mat-table {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.mat-header-row {
+  background: #f3f4f6; /* light grey header */
+}
+
+.mat-header-cell {
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  text-transform: uppercase;
+  padding: 12px 16px;
+}
+
+.mat-row {
+  transition: background 0.2s ease-in-out;
+}
+
+.mat-row:hover {
+  background: #f9fafb; /* soft hover effect */
+}
+
+.mat-cell {
+  font-size: 14px;
+  color: #4b5563;
+  padding: 12px 16px;
+}
+
+/* 🎛️ Buttons */
+button.mat-raised-button {
+  border-radius: 8px;
+  text-transform: none;
+  font-weight: 500;
+  padding: 6px 16px;
+}
+
+button.mat-raised-button.mat-primary {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+button.mat-raised-button.mat-accent {
+  background-color: #6b7280;
+  color: #fff;
+}
+
+/* 📝 Forms */
+.mat-form-field {
+  margin: 8px 0;
+  width: 100%;
+}
+
+.mat-input-element {
+  font-size: 14px;
+}
+
+.main-content {
+  padding: 20px;        /* internal spacing */
+  background-color: #f8f9fa;
+  flex-grow: 1;
+  overflow: auto;        /* scrollable content */
+}
+
+
+nav.sidebar.d-none.d-md-flex.flex-column {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 5px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+

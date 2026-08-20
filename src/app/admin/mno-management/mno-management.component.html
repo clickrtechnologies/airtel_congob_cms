@@ -1,0 +1,129 @@
+<!-- MNO Login Section -->
+<div class="container-fluid mt-4">
+  <div class="card shadow-sm border-0">
+    <h2 class="mb-3 text-center fw-bold">{{ 'MNO Login Management' | translate }}</h2>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <!-- <button class="btn btn-sm btn-primary" (click)="loadUsers()">
+      <i class="bi bi-arrow-clockwise me-1"></i> {{ 'Refresh Users' | translate }}
+    </button> -->
+      <span class="text-muted small">{{ 'Total MNO:' | translate }} {{ mnoLogins.length }}</span>
+    </div>
+
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <form [formGroup]="newMnoForm">
+          <table class="table table-hover align-middle text-center mb-0" id="mnoTable">
+            <thead class="table-dark">
+              <tr>
+                <th>{{ 'S.No' | translate }}</th>
+                <th>{{ 'Telco Name' | translate }}</th>
+                <th>{{ 'Personnel Name' | translate }}</th>
+                <th>{{ 'Personnel Email' | translate }}</th>
+                <th>{{ 'Username' | translate }}</th>
+                <th>{{ 'Password' | translate }}</th>
+                <th>{{ 'Action' | translate }}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <!-- Existing MNO Rows -->
+              <tr *ngFor="let mno of mnoLogins; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ mno.telco }}</td>
+                <td>{{ mno.name }}</td>
+                <td>{{ mno.email }}</td>
+                <td>{{ mno.username }}</td>
+                <td>
+                  <span class="text-muted">••••••</span>
+                </td>
+                <td>
+                  <button class="btn btn-outline-primary btn-sm d-flex align-items-center gap-1" type="button" (click)="confirmLogin(mno)">
+                    <i class="bi bi-box-arrow-in-right"></i> {{ 'Login' | translate }}
+                  </button>
+                </td>
+              </tr>
+
+              <!-- New MNO Login Form Row -->
+              <tr class="table-light">
+                <td>{{ mnoLoginLength + 1 }}</td>
+
+                <td>
+                  <input type="text" class="form-control form-control-sm text-center" formControlName="telco"
+                    placeholder="{{ 'Telco Name' | translate }}" />
+                  <div class="text-danger small mt-1"
+                    *ngIf="newMnoForm.get('telco')?.touched && newMnoForm.get('telco')?.invalid">
+                    {{ 'Required' | translate }}
+                  </div>
+                </td>
+
+                <td>
+                  <input type="text" class="form-control form-control-sm text-center" formControlName="name"
+                    placeholder="{{ 'Personnel Name' | translate }}" />
+                  <div class="text-danger small mt-1"
+                    *ngIf="newMnoForm.get('name')?.touched && newMnoForm.get('name')?.invalid">
+                    {{ 'Required' | translate }}
+                  </div>
+                </td>
+
+                <td>
+                  <input type="email" class="form-control form-control-sm text-center" formControlName="email"
+                    placeholder="{{ 'Email' | translate }}" />
+                  <div class="text-danger small mt-1" *ngIf="newMnoForm.get('email')?.hasError('required')">
+                    {{ 'Required' | translate }}
+                  </div>
+                  <div class="text-danger small mt-1" *ngIf="newMnoForm.get('email')?.hasError('email')">
+                    {{ 'Invalid email' | translate }}
+                  </div>
+                  <div class="text-danger small mt-1" *ngIf="newMnoForm.get('email')?.hasError('emailExists')">
+                    {{ 'Already exists' | translate }}
+                  </div>
+                </td>
+
+                <td>
+                  <input type="text" class="form-control form-control-sm text-center" formControlName="username"
+                    placeholder="{{ 'Username' | translate }}" />
+                  <div class="text-danger small mt-1"
+                    *ngIf="newMnoForm.get('username')?.touched && newMnoForm.get('username')?.invalid">
+                    {{ 'Required' | translate }}
+                  </div>
+                </td>
+
+                <td>
+                  <input type="password" class="form-control form-control-sm text-center" formControlName="password"
+                    placeholder="{{ 'Password' | translate }}" />
+                  <div class="text-danger small mt-1"
+                    *ngIf="newMnoForm.get('password')?.touched && newMnoForm.get('password')?.invalid">
+                    {{ 'Required' | translate }}
+                  </div>
+                </td>
+
+                <td>
+                  <button class="btn btn-success btn-sm d-flex align-items-center gap-1" type="button" (click)="createMnoLogin()">
+                    <i class="bi bi-plus-circle"></i> {{ 'Create' | translate }}
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Modal -->
+<div *ngIf="showConfirmBox" class="confirm-modal-overlay">
+  <div class="confirm-modal">
+    <div class="icon-container">
+      <i class="bi bi-person-bounding-box"></i>
+    </div>
+    <h3>{{ 'Login as' | translate }} {{ selectedMno?.username }}</h3>
+    <p>{{ 'Are you sure you want to continue as this MNO?' | translate }}</p>
+
+    <div class="button-group">
+      <button class="cancel-btn" (click)="showConfirmBox = false">{{ 'Cancel' | translate }}</button>
+      <button class="login-btn" (click)="mnoLoginAs(selectedMno)">{{ 'Confirm' | translate }}</button>
+    </div>
+  </div>
+</div>

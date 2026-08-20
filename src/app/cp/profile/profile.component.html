@@ -1,0 +1,97 @@
+<div class="container mt-4">
+  <h4>CP Profile</h4>
+
+  <form *ngIf="cp">
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>CP Name</label>
+        <input
+          class="form-control"
+          [(ngModel)]="cp.cpName"
+          readonly
+          name="cpName">
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>CP Email ID</label>
+        <input
+          class="form-control"
+          [(ngModel)]="cp.cpEmail"
+          [readonly]="!editMode"
+          name="cpEmail">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Username</label>
+        <input
+          class="form-control"
+          [(ngModel)]="cp.username"
+          readonly
+          name="username">
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Password</label>
+        <input
+          class="form-control"
+          [(ngModel)]="cp.password"
+          readonly
+          type="password"
+          name="password">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Country</label>
+        <input
+          class="form-control"
+          [(ngModel)]="cp.countryName"
+          [readonly]="!editMode"
+          name="countryName">
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Mobile</label>
+        <input
+          class="form-control"
+          [(ngModel)]="cp.mobile"
+          [readonly]="!editMode"
+          name="mobile">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Address</label>
+      <textarea
+        rows="3"
+        class="form-control"
+        [(ngModel)]="cp.address"
+        [readonly]="!editMode"
+        name="address">
+      </textarea>
+    </div>
+
+    <div class="button-container">
+      <button
+        *ngIf="!editMode"
+        type="button"
+        class="btn btn-primary"
+        (click)="editMode=true">
+        Edit
+      </button>
+
+      <button
+        *ngIf="editMode"
+        type="button"
+        class="btn btn-success"
+        (click)="saveChanges()">
+        Save
+      </button>
+    </div>
+
+  </form>
+</div>
