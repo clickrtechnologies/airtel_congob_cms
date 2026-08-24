@@ -40,7 +40,7 @@ td:nth-last-child(3), td:nth-last-child(2), td:nth-last-child(1) {
 }
 
 .approval-header {
-  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  background: linear-gradient(135deg, #E90000, #6610f2);
   color: white;
   padding: 12px 20px;
   border-radius: 12px;
@@ -49,7 +49,7 @@ td:nth-last-child(3), td:nth-last-child(2), td:nth-last-child(1) {
 
 .btn-refresh {
   background: white !important;
-  color: #0d6efd !important;
+  color: #E90000 !important;
   border: none;
   transition: 0.3s ease;
 }
@@ -67,7 +67,7 @@ td:nth-last-child(3), td:nth-last-child(2), td:nth-last-child(1) {
 }
 
 #userApprovalTable thead {
-  background: #0d6efd;
+  background: #E90000;
   color: white;
   position: sticky;
   top: 0;
@@ -105,7 +105,7 @@ td:nth-last-child(3), td:nth-last-child(2), td:nth-last-child(1) {
 }
 
 .btn-audio-circle:hover {
-  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  background: linear-gradient(135deg, #E90000, #6610f2);
   color: white;
   transform: scale(1.15);
 }
@@ -123,7 +123,7 @@ td:nth-last-child(3), td:nth-last-child(2), td:nth-last-child(1) {
 }
 
 .card-footer .btn-primary {
-  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  background: linear-gradient(135deg, #E90000, #6610f2);
   border: none;
   transition: transform 0.2s ease;
 }
@@ -154,7 +154,7 @@ td:nth-last-child(3), td:nth-last-child(2), td:nth-last-child(1) {
   font-size: 16px;
   font-weight: 600;
   color: #374151;
-  border-left: 4px solid #0d6efd;
+  border-left: 4px solid #E90000;
   padding-left: 10px;
 }
 
@@ -179,8 +179,8 @@ td:nth-last-child(3), td:nth-last-child(2), td:nth-last-child(1) {
 
 .doc-btn.primary {
   background: #e8f0ff;
-  border-color: #0d6efd;
-  color: #0d6efd;
+  border-color: #E90000;
+  color: #E90000;
 }
 
 .doc-btn:hover {

@@ -185,9 +185,9 @@ table th {
 
 .nav-tabs .nav-link.active {
   color: #fff !important;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-  border-bottom: 1px solid #0d6efd;
+  background-color: #e90000;
+  border-color: #e90000;
+  border-bottom: 1px solid #e90000;
 }
 
 .artist-container {

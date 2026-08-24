@@ -34,7 +34,7 @@ label {
 }
 
 .form-control:focus {
-  border-color: #0d6efd;
+  border-color: #e90000;
   box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.2);
 }
 
@@ -58,12 +58,12 @@ label {
   margin-top: 20px;
 }
 .btn-primary {
-  background: #0d6efd;
+  background: #e90000;
   border: none;
 }
 
 .btn-primary:hover {
-  background: #0b5ed7;
+  background: #e90000;
 }
 
 .btn-success {

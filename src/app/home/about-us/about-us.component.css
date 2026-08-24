@@ -59,7 +59,7 @@ body {
     font-weight: 700;
     color: #1f2d3d;
     margin-bottom: 22px;
-    border-left: 4px solid #2563eb;
+    border-left: 4px solid #e90000;
     padding-left: 12px;
 }
 
@@ -108,7 +108,7 @@ body {
 .mission-highlight {
     margin-top: 20px;
     padding: 16px 18px;
-    border-left: 4px solid #2563eb;
+    border-left: 4px solid #e90000;
     background: #f8fafc;
     border-radius: 10px;
     color: #334155;

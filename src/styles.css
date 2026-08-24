@@ -17,7 +17,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-  background-color: #2563eb !important; /* Professional blue */
+  background-color: #E90000 !important; /* Professional blue */
   color: #fff !important;
   margin: 2px !important;
 }
@@ -73,7 +73,7 @@ button.mat-raised-button {
 }
 
 button.mat-raised-button.mat-primary {
-  background-color: #2563eb;
+  background-color: #E90000;
   color: #fff;
 }
 

@@ -25,7 +25,7 @@
   vertical-align: middle;
   font-size: 0.9rem;
   font-weight: 600;
-  border-bottom: 2px solid #0d6efd;
+  border-bottom: 2px solid #E90000;
 }
 
 .table tbody td {
@@ -60,7 +60,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  background: linear-gradient(135deg, #E90000, #6610f2);
   color: #fff;
   font-size: 1.3rem;
   border: none;
@@ -69,7 +69,7 @@
 
 .btn-audio-circle:hover {
   transform: scale(1.1);
-  background: linear-gradient(135deg, #6610f2, #0d6efd);
+  background: linear-gradient(135deg, #6610f2, #E90000);
 }
 
 .bi-check-circle-fill {
@@ -95,7 +95,7 @@
 }
 
 .btn-outline-primary:hover {
-  background-color: #0d6efd;
+  background-color: blue;
   color: white;
 }
 
@@ -114,7 +114,7 @@
   font-size: 16px;
   font-weight: 600;
   color: #374151;
-  border-left: 4px solid #0d6efd;
+  border-left: 4px solid #E90000;
   padding-left: 10px;
 }
 
@@ -141,8 +141,8 @@
 
 .doc-btn.primary {
   background: #e8f0ff;
-  border-color: #0d6efd;
-  color: #0d6efd;
+  border-color: #E90000;
+  color: #E90000;
 }
 
 .doc-btn:hover {
@@ -171,17 +171,17 @@
 }
 
 .table-responsive::-webkit-scrollbar-thumb {
-  background: #007bff;
+  background: #E90000;
   border-radius: 10px;
   border: 2px solid #e9ecef;
 }
 
 .table-responsive::-webkit-scrollbar-thumb:hover {
-  background: #0056b3; 
+  background: #E90000; 
 }
 
 .table-responsive {
-  scrollbar-color: #007bff #e9ecef;
+  scrollbar-color: #E90000 #e9ecef;
   scrollbar-width: thin;
 }
 
@@ -235,17 +235,17 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  background: linear-gradient(135deg, #E90000, #6610f2);
   cursor: pointer;
   border: 3px solid #ffffff;
-  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.4);
+  box-shadow: 0 2px 8px rgba(233, 0, 0, 0.4);
   transition: all 0.2s ease;
 }
 
 .slider-input::-webkit-slider-thumb:hover {
   width: 32px;
   height: 32px;
-  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.6);
+  box-shadow: 0 4px 12px rgba(233, 0, 0, 0.6);
   transform: scale(1.1);
 }
 
@@ -253,7 +253,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  background: linear-gradient(135deg, #E90000, #6610f2);
   cursor: pointer;
   border: 3px solid #ffffff;
   box-shadow: 0 2px 8px rgba(13, 110, 253, 0.4);

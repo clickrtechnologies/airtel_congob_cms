@@ -5,7 +5,7 @@
 }
 
 .dashboard-header {
-  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  background: linear-gradient(135deg, #E90000, #6610f2);
   /* background-color: #111827 !important; */
   color: #fff;
   padding: 12px 20px;
@@ -15,7 +15,7 @@
 
 .btn-refresh {
   background: #fff !important;
-  color: #0d6efd;
+  color: #E90000;
   border: none;
   transition: 0.3s ease;
 }
@@ -67,7 +67,7 @@
 }
 
 .btn-audio-circle:hover {
-  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  background: linear-gradient(135deg, #E90000, #6610f2);
   color: #fff;
   transform: scale(1.15);
 }
@@ -103,7 +103,7 @@
   font-size: 16px;
   font-weight: 600;
   color: #374151;
-  border-left: 4px solid #0d6efd;
+  border-left: 4px solid #E90000;
   padding-left: 10px;
 }
 
@@ -130,8 +130,8 @@
 
 .doc-btn.primary {
   background: #e8f0ff;
-  border-color: #0d6efd;
-  color: #0d6efd;
+  border-color: #E90000;
+  color: #E90000;
 }
 
 .doc-btn:hover {

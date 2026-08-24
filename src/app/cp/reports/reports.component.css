@@ -7,12 +7,12 @@
 
 .pagination .page-link {
   min-width: 36px;
-  color: #0d6efd;
+  color: #e40000;
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #e40000;
+  border-color: #e40000;
   color: #fff;
 }
 
@@ -44,7 +44,7 @@
   text-align: center;
   padding: 12px;
   font-weight: 600;
-  border-bottom: 2px solid #0a58ca;
+  border-bottom: 2px solid #e40000;
   white-space: nowrap;
 }
 
