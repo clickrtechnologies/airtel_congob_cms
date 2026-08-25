@@ -14,9 +14,7 @@ export const environment = {
   measurementId: "G-65MVRD9Q3G"
   },
 
-
-  // apiUrl: 'http://localhost:8084/', // trailing slash is goodd
-  apiUrl: 'https://crbt.mobbilewap.com:8084/', // backend server public IP + API port.
+  apiUrl: 'http://172.25.88.75:8095/', // backend server public IP + API port.
 
   logging: {
     level: NgxLoggerLevel.DEBUG,          // console logs
