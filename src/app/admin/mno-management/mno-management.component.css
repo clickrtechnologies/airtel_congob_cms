@@ -41,11 +41,9 @@ body {
   text-align: center;
   padding: 12px;
   font-weight: 600;
-  border-bottom: 2px solid #0a58ca;
+  border-bottom: 2px solid #e90000;
   white-space: nowrap;
 }
-
-
 
 /* Rounded top edges */
 #mnoTable thead tr:first-child th:first-child {
@@ -93,10 +91,6 @@ body {
   padding: 16px;
 }
 
-
-
-
-
 button:disabled {
   background-color: #9ca3af;
   cursor: not-allowed;
@@ -132,17 +126,17 @@ button:disabled {
 }
 
 .btn-outline-primary {
-  border-color: #0d6efd;
-  color: #0d6efd;
+  border-color: #e90000;
+  color: #e90000;
 }
 
 .btn-outline-primary:hover {
-  background-color: #0d6efd;
+  background-color: #e90000;
   color: #fff;
 }
 
 .btn-success {
-  background: linear-gradient(135deg, #198754, #0d6efd);
+  background: linear-gradient(135deg, #198754, #e90000);
   border: none;
 }
 
@@ -171,7 +165,7 @@ button:disabled {
 }
 
 .icon-container {
-  background: #0d6efd;
+  background: #e90000;
   color: white;
   width: 60px;
   height: 60px;
@@ -216,12 +210,12 @@ button:disabled {
 }
 
 .login-btn {
-  background-color: #0d6efd;
+  background-color: #e90000;
   color: white;
 }
 
 .login-btn:hover {
-  background-color: #0b5ed7;
+  background-color: #d40000;
 }
 #mnoTable {
   transform: scale(0.85);

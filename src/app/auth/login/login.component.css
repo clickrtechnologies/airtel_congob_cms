@@ -15,7 +15,7 @@
 /* Header icon */
 .login-icon i {
   font-size: 2.2rem;
-  color: #4f46e5;
+  color: #e90000;
 }
 
 /* Inputs */
@@ -24,8 +24,8 @@
 }
 
 .form-control:focus {
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 0.15rem rgba(79, 70, 229, 0.25);
+  border-color: #e90000;
+  box-shadow:  0 0 0 0.15rem rgba(233, 0, 0, 0.25);
 }
 
 /* Password toggle */
@@ -44,11 +44,32 @@
 
 /* Button */
 .btn-primary {
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  background: linear-gradient(135deg, #e90000, #f43f5e);
   border: none;
   border-radius: 0.75rem;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #4338ca, #4f46e5);
+  background: linear-gradient(135deg, #e90000, #f43f5e);
+}
+/* Button */
+
+.btn-primary {
+  --bs-btn-bg: #e90000;
+  --bs-btn-border-color: #e90000;
+  --bs-btn-hover-bg: #e90000;
+  --bs-btn-hover-border-color: #e90000;
+  --bs-btn-active-bg: #e90000;
+  --bs-btn-active-border-color: #e90000;
+
+  background: #e90000 !important;
+  border-color: #e90000 !important;
+  border-radius: 0.75rem;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background: #e90000 !important;
+  border-color: #e90000 !important;
 }

@@ -188,7 +188,7 @@
 }
 
 .btn-content-upload {
-  background: linear-gradient(135deg, #e90000, #6610f2);
+  background: linear-gradient(135deg, #e90000, #f43f5e);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -203,14 +203,14 @@
 }
 
 .cp-header h2 {
-  background: linear-gradient(90deg, #e90000, #6610f2);
+  background: linear-gradient(90deg, #e90000, #f43f5e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 /* ===== Table Header ===== */
 #cpTable thead {
-  background: linear-gradient(90deg, #e90000, #6610f2);
+  background: linear-gradient(90deg, #e90000, #f43f5e);
   color: white;
 }
 
@@ -861,7 +861,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #e90000, #6610f2);
+  background: linear-gradient(135deg, #e90000, #f43f5e);
   cursor: pointer;
   border: 3px solid #ffffff;
   box-shadow: 0 2px 8px rgba(233, 0, 0, 0.4);
@@ -879,7 +879,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #e90000, #6610f2);
+  background: linear-gradient(135deg, #e90000, #f43f5e);
   cursor: pointer;
   border: 3px solid #ffffff;
   box-shadow: 0 2px 8px rgba(233, 0, 0, 0.4);

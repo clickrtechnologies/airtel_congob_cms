@@ -40,7 +40,7 @@ td:nth-last-child(3), td:nth-last-child(2), td:nth-last-child(1) {
 }
 
 .approval-header {
-  background: linear-gradient(135deg, #E90000, #6610f2);
+  background: linear-gradient(135deg, #E90000, #f43f5e);
   color: white;
   padding: 12px 20px;
   border-radius: 12px;
@@ -105,7 +105,7 @@ td:nth-last-child(3), td:nth-last-child(2), td:nth-last-child(1) {
 }
 
 .btn-audio-circle:hover {
-  background: linear-gradient(135deg, #E90000, #6610f2);
+  background: linear-gradient(135deg, #E90000, #f43f5e);
   color: white;
   transform: scale(1.15);
 }
@@ -123,7 +123,7 @@ td:nth-last-child(3), td:nth-last-child(2), td:nth-last-child(1) {
 }
 
 .card-footer .btn-primary {
-  background: linear-gradient(135deg, #E90000, #6610f2);
+  background: linear-gradient(135deg, #E90000, #f43f5e);
   border: none;
   transition: transform 0.2s ease;
 }

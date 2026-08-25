@@ -18,7 +18,7 @@
   top: 0;
   /* background-color: #343a40; */
   color: #fff;
-  border-bottom: 3px solid #0d6efd;
+  border-bottom: 3px solid #e90000;
   z-index: 2;
 }
 
@@ -45,7 +45,7 @@
 }
 
 #cpTable .btn-audio-circle:hover {
-  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  background: linear-gradient(135deg, #e90000, #f43f5e);
   color: #fff;
   transform: scale(1.1);
 }
@@ -64,7 +64,7 @@
 }
 
 .btn-audio-circle:hover {
-  background: linear-gradient(135deg, #0d6efd, #6610f2); /* Gradient hover */
+  background: linear-gradient(135deg, #e90000, #f43f5e); /* Gradient hover */
   color: #fff;
   transform: scale(1.1);
 }

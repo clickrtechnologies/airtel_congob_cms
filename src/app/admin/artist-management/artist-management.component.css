@@ -10,7 +10,7 @@
   text-align: center;
   padding: 12px;
   font-weight: 600;
-  border-bottom: 2px solid #0a58ca;
+  border-bottom: 2px solid #e90000;
   white-space: nowrap;
 }
 
@@ -44,7 +44,7 @@
 
 #artistTable input:focus {
   outline: none;
-  border-color: #0d6efd;
+  border-color: #e90000;
   box-shadow: 0 0 4px rgba(13, 110, 253, 0.2);
 }
 
@@ -67,8 +67,8 @@
 }
 .table-form-row input:focus,
 .table-form-row select:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 5px rgba(13, 110, 253, 0.2);
+  border-color: #e90000;
+  box-shadow: 0 0 5px rgba(233, 0, 0, 0.2);
 }
 
 .btn-sm {
